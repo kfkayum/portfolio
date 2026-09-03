@@ -1,0 +1,89 @@
+/* ==========================================================================
+   variables.css — design tokens
+   --------------------------------------------------------------------------
+   Dark is the default, premium theme. Light is a fully re-mapped palette,
+   not an inversion. Theme is toggled via [data-theme] on <html>.
+   ========================================================================== */
+:root {
+  /* --- surfaces (dark) --- */
+  --bg:          #08090c;
+  --bg-screen:   #0d0f14;
+  --surface:     #14161d;
+  --surface-2:   #1a1d26;
+  --surface-3:   #232733;
+  --border:      rgba(255, 255, 255, 0.08);
+  --border-2:    rgba(255, 255, 255, 0.14);
+
+  /* --- text --- */
+  --text:   #f2f4f9;
+  --text-2: #a9afbe;
+  --text-3: #6c7382;
+
+  /* --- accent --- */
+  --accent:       #3ee0c4;   /* aqua mint — the brand signal */
+  --accent-ink:   #04140f;   /* readable text on the accent */
+  --accent-soft:  rgba(62, 224, 196, 0.12);
+  --accent-line:  rgba(62, 224, 196, 0.28);
+  --accent-2:     #8aa0ff;   /* periwinkle — a nod to Flutter/Dart, used sparingly */
+  --accent-2-soft: rgba(138, 160, 255, 0.14);
+
+  --live:   #4ade80;
+  --danger: #ff6b6b;
+
+  /* --- elevation --- */
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-2: 0 20px 50px -20px rgba(0, 0, 0, 0.7);
+  --shadow-phone: 0 50px 100px -30px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --glow: 0 0 0 1px var(--accent-line), 0 24px 60px -20px rgba(62, 224, 196, 0.25);
+
+  /* --- radius --- */
+  --r-xs: 8px;
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 26px;
+  --r-xl: 36px;
+  --r-phone: 44px;
+
+  /* --- type --- */
+  --font-display: "Sora", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* --- layout --- */
+  --rail-w: 250px;
+  --status-h: 36px;
+  --tabbar-h: 66px;
+  --maxw: 1080px;
+  --pad-screen: clamp(1.25rem, 4vw, 4rem);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root[data-theme="light"] {
+  --bg:          #e9ebf1;
+  --bg-screen:   #f4f5f8;
+  --surface:     #ffffff;
+  --surface-2:   #ffffff;
+  --surface-3:   #eceef3;
+  --border:      rgba(14, 18, 27, 0.09);
+  --border-2:    rgba(14, 18, 27, 0.16);
+
+  --text:   #0e121b;
+  --text-2: #47505f;
+  --text-3: #7c8494;
+
+  --accent:      #0f9e88;
+  --accent-ink:  #ffffff;
+  --accent-soft: rgba(15, 158, 136, 0.12);
+  --accent-line: rgba(15, 158, 136, 0.30);
+  --accent-2:    #5061e4;
+  --accent-2-soft: rgba(80, 97, 228, 0.12);
+
+  --live: #16a34a;
+
+  --shadow-1: 0 1px 2px rgba(20, 28, 54, 0.08);
+  --shadow-2: 0 22px 50px -24px rgba(20, 28, 54, 0.22);
+  --shadow-phone: 0 50px 100px -34px rgba(20, 28, 54, 0.28), 0 0 0 1px rgba(14, 18, 27, 0.05);
+  --glow: 0 0 0 1px var(--accent-line), 0 24px 60px -22px rgba(15, 158, 136, 0.28);
+}

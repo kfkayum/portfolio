@@ -1,67 +1,105 @@
 /* ==========================================================================
-   navigation.js — sticky header, mobile menu, active section highlighting
+   navigation.js — scroll-spy, rail + tab-bar active indicators,
+   status-bar screen name, smooth in-page navigation
    ========================================================================== */
 (function () {
   "use strict";
 
-  const header = document.getElementById("siteHeader");
-  const nav = document.getElementById("primaryNav");
-  const toggle = document.getElementById("navToggle");
-  const scrim = document.getElementById("navScrim");
-  const links = Array.from(document.querySelectorAll(".nav-link"));
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var railNav = document.getElementById("railNav");
+  var railLinks = Array.prototype.slice.call(document.querySelectorAll(".rail-link"));
+  var railIndicator = document.querySelector(".rail-indicator");
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  var tabIndicator = document.querySelector(".tabbar-indicator");
+  var screenName = document.getElementById("screenName");
+  var sections = Array.prototype.slice.call(document.querySelectorAll(".screen"));
 
-  /* ---- Sticky header shadow on scroll ---- */
-  const onScroll = () => {
-    header.classList.toggle("is-scrolled", window.scrollY > 8);
-  };
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
-
-  /* ---- Mobile menu ---- */
-  const setMenu = (open) => {
-    nav.classList.toggle("is-open", open);
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    scrim.hidden = !open;
-    document.body.classList.toggle("no-scroll", open);
-  };
-
-  toggle.addEventListener("click", () => {
-    setMenu(toggle.getAttribute("aria-expanded") !== "true");
-  });
-  scrim.addEventListener("click", () => setMenu(false));
-
-  links.forEach((link) => {
-    link.addEventListener("click", () => setMenu(false));
+  var labelFor = {};
+  railLinks.concat(tabs).forEach(function (a) {
+    var id = a.getAttribute("href").slice(1);
+    if (a.dataset.screen) labelFor[id] = a.dataset.screen;
   });
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && nav.classList.contains("is-open")) {
-      setMenu(false);
-      toggle.focus();
-    }
-  });
+  /* sections without their own tab-bar entry borrow the nearest one */
+  var TAB_FALLBACK = { experience: "projects", services: "projects" };
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 1024 && nav.classList.contains("is-open")) setMenu(false);
-  });
+  /* ---- move the rail indicator behind the active link ---- */
+  function moveRailIndicator(link) {
+    if (!railIndicator || !link) return;
+    railIndicator.style.transform = "translateY(" + link.offsetTop + "px)";
+  }
 
-  /* ---- Active section highlighting ---- */
-  const sections = links
-    .map((link) => document.querySelector(link.getAttribute("href")))
-    .filter(Boolean);
+  /* ---- move the mobile tab-bar indicator ---- */
+  function moveTabIndicator(tab) {
+    if (!tabIndicator || !tab) return;
+    var i = tabs.indexOf(tab);
+    tabIndicator.style.transform = "translateX(" + i * 100 + "%)";
+  }
 
-  const spy = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const id = entry.target.id;
-        links.forEach((link) =>
-          link.classList.toggle("is-active", link.getAttribute("href") === "#" + id)
-        );
+  function setActive(id) {
+    railLinks.forEach(function (a) {
+      var on = a.getAttribute("href") === "#" + id;
+      a.classList.toggle("is-active", on);
+      if (on) moveRailIndicator(a);
+    });
+
+    var tabId = "#" + (TAB_FALLBACK[id] || id);
+    var activeTab = null;
+    tabs.forEach(function (a) {
+      var on = a.getAttribute("href") === tabId;
+      a.classList.toggle("is-active", on);
+      if (on) activeTab = a;
+    });
+    if (activeTab) moveTabIndicator(activeTab);
+
+    if (screenName) screenName.textContent = labelFor[id] || "Portfolio";
+  }
+
+  /* ---- scroll spy ---- */
+  var spy = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) setActive(entry.target.id);
       });
     },
-    { rootMargin: "-45% 0px -50% 0px" }
+    { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
   );
-  sections.forEach((section) => spy.observe(section));
+  sections.forEach(function (s) { spy.observe(s); });
+
+  /* ---- smooth navigation + brief screen-entrance ---- */
+  function go(e) {
+    var link = e.currentTarget;
+    var href = link.getAttribute("href");
+    if (!href || href.charAt(0) !== "#") return;
+    var target = document.getElementById(href.slice(1));
+    if (!target) return;
+
+    e.preventDefault();
+    target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    history.replaceState(null, "", href);
+
+    if (!reduce) {
+      target.classList.remove("is-entering");
+      void target.offsetWidth;
+      target.classList.add("is-entering");
+      setTimeout(function () { target.classList.remove("is-entering"); }, 700);
+    }
+  }
+  railLinks.concat(tabs).forEach(function (a) { a.addEventListener("click", go); });
+
+  /* ---- keep indicators aligned after layout changes ---- */
+  function realign() {
+    var active = document.querySelector(".rail-link.is-active");
+    moveRailIndicator(active);
+    var activeTab = document.querySelector(".tab.is-active");
+    moveTabIndicator(activeTab);
+  }
+  window.addEventListener("resize", realign, { passive: true });
+  window.addEventListener("load", realign);
+
+  /* initial state from hash or first section */
+  var start = (location.hash || "#home").slice(1);
+  if (document.getElementById(start)) setActive(start);
+  else setActive("home");
+  requestAnimationFrame(realign);
 })();

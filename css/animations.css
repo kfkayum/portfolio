@@ -1,69 +1,55 @@
 /* ==========================================================================
-   animations.css — keyframes and scroll-reveal states
+   animations.css — reveal-on-scroll, keyframes, micro-motion
    ========================================================================== */
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
+/* scroll reveal — content is visible by default; the hidden state is only
+   armed once JS adds .anim to <html>, so a JS failure never hides content. */
+.reveal { transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+.anim .reveal { opacity: 0; transform: translateY(22px); }
+.anim .reveal.is-visible { opacity: 1; transform: none; }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(63, 224, 197, 0.55); }
-  70% { box-shadow: 0 0 0 10px rgba(63, 224, 197, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(63, 224, 197, 0); }
-}
+/* stagger children inside a revealed group */
+.reveal.is-visible .stat-tile,
+.reveal.is-visible .profile-points li { transition-delay: 0.05s; }
 
-@keyframes modal-pop {
-  from { opacity: 0; transform: translateY(16px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes nav-slide-in {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-
-/* Scroll reveal — elements start hidden, .is-visible is added by animations.js */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
-  will-change: opacity, transform;
-}
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-/* Stagger children within a grid/list when the container is revealed */
-.reveal-stagger > * {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
-}
-.reveal-stagger.is-visible > * {
-  opacity: 1;
-  transform: none;
-}
-.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.06s; }
-.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.12s; }
-.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.18s; }
-.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.24s; }
-.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.3s; }
-
-/* Mobile nav panel animation is defined here, applied in responsive.css */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-  .reveal,
-  .reveal-stagger > * {
-    opacity: 1;
-    transform: none;
-  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* screen entrance when navigated to */
+.screen.is-entering > * { animation: screen-in 0.55s var(--ease-out) both; }
+
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes pulse-dot {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--live) 55%, transparent); }
+  70%  { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@keyframes blink {
+  0%, 49%  { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+
+/* gentle idle float on the hero float-cards (disabled for reduced motion) */
+@media (prefers-reduced-motion: no-preference) and (min-width: 769px) {
+  .float-card-fire  { animation: float-y 6s ease-in-out infinite 0.6s; }
+  .float-card-store { animation: float-y 8s ease-in-out infinite 1.2s; }
+}
+
+/* tab bar active pop */
+.tab.is-active svg { animation: tab-pop 0.4s var(--ease); }
+@keyframes tab-pop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.22); }
+  100% { transform: scale(1); }
 }

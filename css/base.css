@@ -1,0 +1,219 @@
+/* ==========================================================================
+   base.css — global type, the app shell (status bar / rail / screens / tab bar)
+   ========================================================================== */
+html { overflow-x: clip; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: clip;
+}
+
+body.no-scroll { overflow: hidden; }
+
+strong { font-weight: 700; color: var(--text); }
+em { font-style: normal; }
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 200;
+  padding: 0.6rem 1rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+  border-radius: var(--r-sm);
+  transform: translateY(-150%);
+  transition: transform 0.2s var(--ease);
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* ---------- APP FRAME ---------- */
+.app {
+  min-height: 100vh;
+  padding-left: var(--rail-w);
+  padding-top: var(--status-h);
+}
+
+/* ---------- STATUS BAR ---------- */
+.statusbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 90;
+  height: var(--status-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 clamp(0.9rem, 3vw, 1.4rem);
+  padding-left: calc(var(--rail-w) + clamp(0.9rem, 3vw, 1.4rem));
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--text-2);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border-bottom: 1px solid var(--border);
+}
+.statusbar-time { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+.statusbar-title { display: flex; align-items: center; gap: 0.5rem; text-transform: uppercase; }
+.statusbar-crumb { color: var(--text-3); }
+.statusbar-sep { color: var(--text-3); }
+.statusbar-screen { color: var(--accent); }
+.statusbar-icons { display: flex; align-items: center; gap: 0.4rem; color: var(--text); }
+
+/* ---------- DESKTOP RAIL ---------- */
+.rail {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 95;
+  width: var(--rail-w);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.1rem 0.9rem 1.1rem;
+  background: var(--bg-screen);
+  border-right: 1px solid var(--border);
+}
+
+.rail-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.5rem 0.6rem 1rem;
+}
+.app-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: linear-gradient(150deg, var(--accent), var(--accent-2));
+  color: var(--accent-ink);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.rail-brand-text { display: flex; flex-direction: column; line-height: 1.25; }
+.rail-brand-text strong { font-family: var(--font-display); font-size: 0.92rem; }
+.rail-brand-text em { font-size: 0.74rem; color: var(--text-3); }
+
+.rail-nav { position: relative; display: flex; flex-direction: column; gap: 0.15rem; }
+.rail-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 42px;
+  border-radius: var(--r-sm);
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--accent-line);
+  transition: transform 0.4s var(--ease), opacity 0.3s;
+  pointer-events: none;
+}
+.rail-link {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  height: 42px;
+  padding: 0 0.75rem;
+  border-radius: var(--r-sm);
+  color: var(--text-2);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.rail-link svg { width: 19px; height: 19px; opacity: 0.7; transition: opacity 0.2s, transform 0.2s; }
+.rail-link:hover { color: var(--text); }
+.rail-link:hover svg { opacity: 1; }
+.rail-link.is-active { color: var(--accent); }
+.rail-link.is-active svg { opacity: 1; transform: scale(1.05); }
+
+.rail-foot { margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem; padding: 0.6rem; }
+.availability {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-2);
+}
+.rail-foot-actions { display: flex; align-items: center; gap: 0.5rem; }
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--live);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--live) 60%, transparent);
+  animation: pulse-dot 2.4s var(--ease) infinite;
+  flex-shrink: 0;
+}
+
+/* ---------- SCREENS ---------- */
+.screens { display: flex; flex-direction: column; }
+
+.screen {
+  position: relative;
+  min-height: calc(100vh - var(--status-h));
+  padding: clamp(3.5rem, 8vh, 6rem) var(--pad-screen);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-margin-top: var(--status-h);
+  border-bottom: 1px solid var(--border);
+}
+.screen > * { width: 100%; max-width: var(--maxw); margin-inline: auto; min-width: 0; }
+.screen:nth-child(even) { background: var(--bg-screen); }
+
+.home-grid, .home-grid > *,
+.profile-grid, .profile-grid > *,
+.code-band, .code-band > * { min-width: 0; }
+
+.screen-head { margin-bottom: clamp(2rem, 5vh, 3.5rem); }
+.screen-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 1rem;
+}
+.screen-label span { color: var(--accent); }
+.screen-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4.4vw, 3rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+}
+.screen-sub {
+  margin-top: 1rem;
+  color: var(--text-2);
+  font-size: 1.02rem;
+  max-width: 52ch;
+}
+
+/* ---------- MOBILE TAB BAR ---------- */
+.tabbar { display: none; }
+.theme-toggle-float { display: none; }
+
+/* ---------- FOOTER ---------- */
+.app-footer {
+  max-width: none !important;
+  padding: 2.5rem var(--pad-screen);
+  text-align: center;
+  color: var(--text-3);
+  font-size: 0.82rem;
+  background: var(--bg-screen);
+}
+.app-footer p + p { margin-top: 0.35rem; }
+.app-footer strong { color: var(--text-2); }

@@ -2,37 +2,53 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
   <title>Ashikur Rahman Kayum — Flutter Developer &amp; Mobile App Developer</title>
-  <meta name="description" content="Flutter Developer with 4+ years of professional experience and 25+ mobile applications published on Google Play and the Apple App Store. Cross-platform Android &amp; iOS apps, REST API and Firebase integration, from architecture to store deployment." />
-  <meta name="keywords" content="Flutter Developer, Mobile App Developer, Dart, Android Developer, iOS Developer, Firebase, REST API, GetX, BLoC, Cross-platform, Ashikur Rahman Kayum" />
+  <meta name="description" content="Ashikur Rahman Kayum is a Flutter developer with 4+ years of professional experience and 25+ mobile apps published on Google Play and the Apple App Store. Cross-platform Android &amp; iOS, REST API and Firebase integration, architecture to store release." />
+  <meta name="keywords" content="Flutter Developer, Mobile App Developer, Dart, Android Developer, iOS Developer, Firebase, REST API, GetX, BLoC, Cross-platform, CodeCanyon, Ashikur Rahman Kayum" />
   <meta name="author" content="Ashikur Rahman Kayum" />
-  <meta name="theme-color" content="#0b0f17" />
+  <meta name="theme-color" content="#08090c" />
+  <meta name="color-scheme" content="dark light" />
 
-  <!-- TODO: replace with the deployed site URL -->
-  <link rel="canonical" href="https://example.com/" />
+  <link rel="canonical" href="https://kfkayum.github.io/portfolio/" />
 
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ashikur Rahman Kayum" />
   <meta property="og:title" content="Ashikur Rahman Kayum — Flutter Developer &amp; Mobile App Developer" />
-  <meta property="og:description" content="Flutter Developer with 4+ years of experience and 25+ published mobile apps across Android &amp; iOS. From architecture to app store deployment." />
-  <meta property="og:url" content="https://example.com/" />
-  <meta property="og:image" content="assets/images/profile/ashikur-rahman-kayum.jpg" />
+  <meta property="og:description" content="Flutter developer, 4+ years and 25+ published mobile apps across Android &amp; iOS. From architecture to app store release." />
+  <meta property="og:url" content="https://kfkayum.github.io/portfolio/" />
+  <meta property="og:image" content="https://kfkayum.github.io/portfolio/assets/images/profile/ashikur-rahman-kayum.jpg" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ashikur Rahman Kayum — Flutter Developer &amp; Mobile App Developer" />
-  <meta name="twitter:description" content="Flutter Developer with 4+ years of experience and 25+ published mobile apps across Android &amp; iOS." />
-  <meta name="twitter:image" content="assets/images/profile/ashikur-rahman-kayum.jpg" />
+  <meta name="twitter:description" content="Flutter developer, 4+ years and 25+ published mobile apps across Android &amp; iOS." />
+  <meta name="twitter:image" content="https://kfkayum.github.io/portfolio/assets/images/profile/ashikur-rahman-kayum.jpg" />
 
   <link rel="icon" href="assets/images/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/images/icons/favicon.svg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" />
 
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/sections.css" />
   <link rel="stylesheet" href="css/animations.css" />
   <link rel="stylesheet" href="css/responsive.css" />
+
+  <script>
+    /* Set theme before first paint to avoid a flash. */
+    (function () {
+      try {
+        var t = localStorage.getItem("portfolio-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
 
   <script type="application/ld+json">
   {
@@ -40,611 +56,582 @@
     "@type": "Person",
     "name": "Ashikur Rahman Kayum",
     "jobTitle": "Flutter Developer",
+    "description": "Flutter developer with 4+ years of professional experience and 25+ mobile apps published on Google Play and the Apple App Store.",
     "email": "mailto:kfkayum@gmail.com",
     "telephone": "+8801781795948",
-    "url": "https://example.com/",
-    "image": "assets/images/profile/ashikur-rahman-kayum.jpg",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Faridpur",
-      "addressCountry": "Bangladesh"
-    },
+    "url": "https://kfkayum.github.io/portfolio/",
+    "image": "https://kfkayum.github.io/portfolio/assets/images/profile/ashikur-rahman-kayum.jpg",
+    "address": { "@type": "PostalAddress", "addressLocality": "Faridpur", "addressCountry": "Bangladesh" },
     "sameAs": ["https://github.com/kfkayum"],
-    "knowsAbout": ["Flutter", "Dart", "Mobile App Development", "Android", "iOS", "Firebase", "REST API", "GetX", "BLoC"]
+    "knowsAbout": ["Flutter", "Dart", "Mobile App Development", "Android", "iOS", "Firebase", "REST API", "GetX", "BLoC", "Provider", "SQLite"],
+    "worksFor": { "@type": "Organization", "name": "Theme" }
   }
   </script>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#home">Skip to content</a>
 
-  <!-- ============ NAVIGATION ============ -->
-  <header class="site-header" id="siteHeader">
-    <div class="container nav-inner">
-      <a href="#home" class="brand" aria-label="Ashikur Rahman Kayum — home">
-        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
-        <span class="brand-text">Ashikur<span class="brand-dot">.</span></span>
+  <div class="app" id="app">
+
+    <!-- ============ STATUS BAR ============ -->
+    <div class="statusbar">
+      <span class="statusbar-time"><span id="clock">9:41</span></span>
+      <span class="statusbar-title">
+        <span class="statusbar-crumb">Portfolio</span>
+        <span class="statusbar-sep" aria-hidden="true">/</span>
+        <span class="statusbar-screen" id="screenName">Home</span>
+      </span>
+      <span class="statusbar-icons" aria-hidden="true">
+        <svg viewBox="0 0 24 16" width="20" height="13"><g fill="currentColor"><rect x="0" y="10" width="4" height="6" rx="1"/><rect x="6" y="7" width="4" height="9" rx="1"/><rect x="12" y="4" width="4" height="12" rx="1"/><rect x="18" y="1" width="4" height="15" rx="1"/></g></svg>
+        <svg viewBox="0 0 24 18" width="18" height="14"><path fill="currentColor" d="M12 3.5c3.9 0 7.5 1.5 10.2 4L24 5.3A17.4 17.4 0 0 0 0 5.3L1.8 7.5A14.9 14.9 0 0 1 12 3.5Zm0 5c2.5 0 4.8 1 6.5 2.6l1.9-2.1A12.4 12.4 0 0 0 12 6a12.4 12.4 0 0 0-8.4 3l1.9 2.1A9.4 9.4 0 0 1 12 8.5Zm0 5c1.1 0 2.1.4 2.9 1.2L12 18l-2.9-3.3c.8-.8 1.8-1.2 2.9-1.2Z"/></svg>
+        <svg viewBox="0 0 28 14" width="24" height="12"><rect x="0.5" y="0.5" width="23" height="13" rx="3.5" fill="none" stroke="currentColor" opacity="0.4"/><rect x="2.5" y="2.5" width="17" height="9" rx="1.5" fill="currentColor"/><rect x="25" y="4" width="2.5" height="6" rx="1.25" fill="currentColor" opacity="0.4"/></svg>
+      </span>
+    </div>
+
+    <!-- ============ DESKTOP RAIL ============ -->
+    <aside class="rail" aria-label="Primary navigation">
+      <a href="#home" class="rail-brand" aria-label="Ashikur Rahman Kayum — home">
+        <span class="app-icon" aria-hidden="true">AK</span>
+        <span class="rail-brand-text">
+          <strong>Ashikur Rahman</strong>
+          <em>Flutter Developer</em>
+        </span>
       </a>
 
-      <nav class="nav" id="primaryNav" aria-label="Primary">
-        <ul class="nav-list">
-          <li><a href="#home" class="nav-link">Home</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#skills" class="nav-link">Skills</a></li>
-          <li><a href="#experience" class="nav-link">Experience</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#services" class="nav-link">Services</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
+      <nav class="rail-nav" id="railNav">
+        <span class="rail-indicator" aria-hidden="true"></span>
+        <a href="#home" class="rail-link is-active" data-screen="Home">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3.2 3 10.3V21a1 1 0 0 0 1 1h5v-6h6v6h5a1 1 0 0 0 1-1V10.3L12 3.2Z"/></svg>
+          <span>Home</span>
+        </a>
+        <a href="#profile" class="rail-link" data-screen="Profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.2 0-8 2.4-8 5.3V21a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-1.7c0-2.9-3.8-5.3-8-5.3Z"/></svg>
+          <span>Profile</span>
+        </a>
+        <a href="#skills" class="rail-link" data-screen="Tech Stack">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 3 7l9 5 9-5-9-5Zm-7.3 8.2L3 11.1l9 5 9-5-1.7-.9-7.3 4-7.3-4Zm0 5L3 16l9 5 9-5-1.7-.9-7.3 4-7.3-4Z"/></svg>
+          <span>Tech Stack</span>
+        </a>
+        <a href="#experience" class="rail-link" data-screen="Career">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 3a2 2 0 0 0-2 2v1H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-3V5a2 2 0 0 0-2-2H9Zm0 2h6v1H9V5Zm3 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"/></svg>
+          <span>Career</span>
+        </a>
+        <a href="#projects" class="rail-link" data-screen="Work">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Zm5 15a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></svg>
+          <span>Work</span>
+        </a>
+        <a href="#services" class="rail-link" data-screen="Services">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m12 2 2.9 6.3L22 9.3l-5 4.6 1.3 6.9L12 17.5 5.7 20.8 7 13.9l-5-4.6 7.1-1L12 2Z"/></svg>
+          <span>Services</span>
+        </a>
+        <a href="#contact" class="rail-link" data-screen="Contact">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm8 7 8-5H4l8 5Z"/></svg>
+          <span>Contact</span>
+        </a>
       </nav>
 
-      <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme" aria-pressed="false">
-          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1Zm0-19a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1Zm10 11a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1ZM4 12a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1Zm14.95 6.36a1 1 0 0 1-1.41 0l-.71-.71a1 1 0 1 1 1.41-1.41l.71.7a1 1 0 0 1 0 1.42ZM7.17 7.17a1 1 0 0 1-1.41 0l-.71-.71A1 1 0 0 1 6.46 5.05l.71.71a1 1 0 0 1 0 1.41Zm11.78-2.12a1 1 0 0 1 0 1.41l-.71.71a1 1 0 1 1-1.41-1.41l.71-.71a1 1 0 0 1 1.41 0ZM7.17 16.83a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.41l.71-.71a1 1 0 0 1 1.41 0Z"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.5A1 1 0 0 0 9 1a10 10 0 1 0 13 13 1 1 0 0 0-.36-1Z"/></svg>
-        </button>
-
-        <a href="assets/cv/Ashikur-Rahman-Kayum-Flutter-Developer-CV.pdf" class="btn btn-primary btn-sm nav-cv" download>
-          Download CV
-        </a>
-
-        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
-          <span class="nav-toggle-bar"></span>
-          <span class="nav-toggle-bar"></span>
-          <span class="nav-toggle-bar"></span>
-        </button>
+      <div class="rail-foot">
+        <p class="availability"><span class="dot" aria-hidden="true"></span> Available for opportunities</p>
+        <div class="rail-foot-actions">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme" aria-pressed="false">
+            <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1Zm0-19a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1Zm10 11a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1ZM4 12a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1Zm14.95 6.36a1 1 0 0 1-1.41 0l-.71-.71a1 1 0 1 1 1.41-1.41l.71.7a1 1 0 0 1 0 1.42ZM7.17 7.17a1 1 0 0 1-1.41 0l-.71-.71A1 1 0 0 1 6.46 5.05l.71.71a1 1 0 0 1 0 1.41Zm11.78-2.12a1 1 0 0 1 0 1.41l-.71.71a1 1 0 1 1-1.41-1.41l.71-.71a1 1 0 0 1 1.41 0ZM7.17 16.83a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.41l.71-.71a1 1 0 0 1 1.41 0Z"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.5A1 1 0 0 0 9 1a10 10 0 1 0 13 13 1 1 0 0 0-.36-1Z"/></svg>
+          </button>
+          <a href="assets/cv/Ashikur-Rahman-Kayum-Flutter-Developer-CV.pdf" class="btn btn-ghost btn-sm" download>
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l2.3-2.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4l2.3 2.3V4a1 1 0 0 1 1-1ZM5 19h14a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2Z"/></svg>
+            CV
+          </a>
+        </div>
       </div>
-    </div>
-  </header>
+    </aside>
 
-  <div class="nav-scrim" id="navScrim" hidden></div>
+    <!-- ============ SCREENS ============ -->
+    <main class="screens" id="main">
 
-  <main id="main">
+      <!-- ---------- HOME ---------- -->
+      <section class="screen screen-home" id="home" aria-labelledby="home-title">
+        <div class="home-grid">
+          <div class="home-copy">
+            <p class="eyebrow reveal">
+              <span class="dot" aria-hidden="true"></span>
+              Faridpur, Bangladesh · Remote &amp; relocation
+            </p>
+            <h1 class="home-title reveal" id="home-title">
+              Flutter developer building
+              <span class="home-title-accent">production-ready</span>
+              mobile&nbsp;apps.
+            </h1>
+            <p class="home-lead reveal">
+              I'm <strong>Ashikur Rahman Kayum</strong>. Over 4+ years I've architected, built and
+              published <strong>25+ applications</strong> to Google Play and the App Store — owning
+              each product from architecture and UI/UX through API integration and store release.
+            </p>
 
-    <!-- ============ HERO ============ -->
-    <section class="hero section" id="home">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="hero-eyebrow reveal">
-            <span class="status-dot" aria-hidden="true"></span>
-            Available for opportunities · Remote / Relocation
-          </p>
-          <h1 class="hero-title reveal">
-            Flutter Developer building
-            <span class="text-gradient">scalable, production-ready</span>
-            mobile apps
-          </h1>
-          <p class="hero-lead reveal">
-            I'm <strong>Ashikur Rahman Kayum</strong> — a Flutter developer with 4+ years of
-            professional experience and 25+ applications shipped to Google Play and the Apple
-            App Store. I own products end to end: architecture, UI/UX, development, testing
-            and store deployment.
-          </p>
+            <div class="home-cta reveal">
+              <a href="#projects" class="btn btn-primary" data-magnetic>View Work</a>
+              <button class="btn btn-ghost" type="button" data-open-contact>Start a Conversation</button>
+            </div>
 
-          <div class="hero-cta reveal">
-            <a href="#projects" class="btn btn-primary">View Projects</a>
-            <a href="#contact" class="btn btn-ghost">Contact Me</a>
-            <a href="assets/cv/Ashikur-Rahman-Kayum-Flutter-Developer-CV.pdf" class="btn btn-ghost" download>Download CV</a>
+            <dl class="home-facts reveal">
+              <div><dt>Focus</dt><dd>Flutter · Dart</dd></div>
+              <div><dt>Backend</dt><dd>Firebase · REST API</dd></div>
+              <div><dt>Ships to</dt><dd>Android · iOS</dd></div>
+            </dl>
           </div>
 
-          <ul class="hero-socials reveal" aria-label="Professional links">
-            <li>
-              <a href="https://github.com/kfkayum" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2A10 10 0 0 0 8.84 21.5c.5.09.66-.22.66-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg>
-                <span>GitHub</span>
-              </a>
-            </li>
-            <li>
-              <!-- TODO: replace href with the real LinkedIn profile URL (not listed on the CV) -->
-              <a href="#contact" aria-label="LinkedIn profile (link pending)">
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM3 8.75h3.86V21H3V8.75ZM9.4 8.75h3.7v1.67h.05a4.06 4.06 0 0 1 3.65-2c3.9 0 4.62 2.57 4.62 5.9V21h-3.86v-5.44c0-1.3-.02-2.97-1.8-2.97-1.82 0-2.1 1.42-2.1 2.88V21H9.4V8.75Z"/></svg>
-                <span>LinkedIn</span>
-              </a>
-            </li>
-            <li>
-              <a href="mailto:kfkayum@gmail.com" aria-label="Send an email">
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v.4l8 5 8-5V6H4Zm16 2.9-7.47 4.67a1 1 0 0 1-1.06 0L4 8.9V18h16V8.9Z"/></svg>
-                <span>Email</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+          <div class="home-stage reveal" aria-hidden="true" id="homeStage">
+            <div class="phone" data-parallax="6">
+              <div class="phone-body">
+                <span class="phone-speaker"></span>
+                <div class="phone-screen">
+                  <div class="mini-statusbar">
+                    <span id="phoneClock">9:41</span>
+                    <span class="mini-statusbar-icons">
+                      <svg viewBox="0 0 20 12" width="16" height="10"><g fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="6" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></g></svg>
+                      <svg viewBox="0 0 24 12" width="20" height="10"><rect x="0.5" y="0.5" width="19" height="11" rx="3" fill="none" stroke="currentColor" opacity="0.5"/><rect x="2" y="2" width="14" height="8" rx="1.5" fill="currentColor"/></svg>
+                    </span>
+                  </div>
+                  <div class="mini-app">
+                    <p class="mini-greeting">Good to see you 👋</p>
+                    <p class="mini-name">Ashikur Rahman Kayum</p>
+                    <p class="mini-role">Flutter Developer · Mobile App Developer</p>
 
-        <div class="hero-visual reveal" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="app-statusbar">
-                <span>9:41</span>
-                <span class="app-statusbar-icons">Flutter</span>
-              </div>
-              <div class="app-hero">
-                <span class="app-avatar"></span>
-                <div class="app-lines">
-                  <span class="app-line w-60"></span>
-                  <span class="app-line w-40"></span>
+                    <p class="mini-headline">Building production-ready mobile experiences.</p>
+
+                    <div class="mini-actions">
+                      <span class="mini-btn mini-btn-primary">View Work</span>
+                      <span class="mini-btn">Hire Me</span>
+                    </div>
+
+                    <div class="mini-chips">
+                      <span>Flutter</span><span>Dart</span><span>Firebase</span><span>REST API</span>
+                    </div>
+
+                    <p class="mini-section-label">Now shipping</p>
+                    <ul class="mini-list">
+                      <li><span class="mini-list-ic">W</span><span class="mini-list-tx"><strong>WorkZen</strong><em>HRM &amp; Payroll</em></span><span class="mini-list-tag">Live</span></li>
+                      <li><span class="mini-list-ic">I</span><span class="mini-list-tx"><strong>InvoiceX</strong><em>Billing &amp; Invoicing</em></span><span class="mini-list-tag">Live</span></li>
+                      <li><span class="mini-list-ic">T</span><span class="mini-list-tx"><strong>Tribu</strong><em>Club management</em></span><span class="mini-list-tag">Live</span></li>
+                      <li><span class="mini-list-ic">D</span><span class="mini-list-tx"><strong>Dutch Flow</strong><em>Learning &amp; fitness</em></span><span class="mini-list-tag">Live</span></li>
+                    </ul>
+                  </div>
+                  <div class="mini-tabbar">
+                    <span class="is-active"><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 3 3 10v11h6v-6h6v6h6V10L12 3Z"/></svg></span>
+                    <span><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M7 2h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Z"/></svg></span>
+                    <span><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="m12 2 3 6.5 7 1-5 4.7 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.5l7-1L12 2Z"/></svg></span>
+                    <span><svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5Z"/></svg></span>
+                  </div>
                 </div>
               </div>
-              <div class="app-cards">
-                <div class="app-card"><span class="app-line w-70"></span><span class="app-line w-40"></span></div>
-                <div class="app-card"><span class="app-line w-50"></span><span class="app-line w-60"></span></div>
-                <div class="app-card"><span class="app-line w-60"></span><span class="app-line w-30"></span></div>
-              </div>
-              <div class="app-tabbar">
-                <span class="app-tab is-active"></span>
-                <span class="app-tab"></span>
-                <span class="app-tab"></span>
-                <span class="app-tab"></span>
-              </div>
+            </div>
+
+            <div class="float-card float-card-fire" data-parallax="18">
+              <span class="float-tag">Firebase</span>
+              <p>Auth · Firestore · FCM</p>
+            </div>
+
+            <div class="float-card float-card-store" data-parallax="11">
+              <strong>25+</strong>
+              <span>apps published</span>
             </div>
           </div>
-
-          <div class="float-card float-card-1">
-            <span class="float-badge">Dart</span>
-            <code>Widget build(context)</code>
-          </div>
-          <div class="float-card float-card-2">
-            <span class="float-badge">Firebase</span>
-            <code>Auth · Firestore · FCM</code>
-          </div>
-          <div class="float-card float-card-3">
-            <span class="platform-pill">Android</span>
-            <span class="platform-pill">iOS</span>
-          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ STATS ============ -->
-    <section class="stats section-tight" aria-label="Career statistics">
-      <div class="container">
-        <ul class="stats-grid">
-          <li class="stat reveal">
-            <span class="stat-num" data-count-to="4" data-count-suffix="+">0</span>
-            <span class="stat-label">Years of professional<br />Flutter experience</span>
-          </li>
-          <li class="stat reveal">
-            <span class="stat-num" data-count-to="25" data-count-suffix="+">0</span>
-            <span class="stat-label">Apps designed, built<br />&amp; published</span>
-          </li>
-          <li class="stat reveal">
-            <span class="stat-num" data-count-to="5" data-count-suffix="+">0</span>
-            <span class="stat-label">Years total in mobile<br />app development</span>
-          </li>
-          <li class="stat reveal">
-            <span class="stat-num" data-count-to="4">0</span>
-            <span class="stat-label">Commercial products on<br />Envato CodeCanyon</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ ABOUT ============ -->
-    <section class="section" id="about">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="section-kicker">01 — About</p>
-          <h2 class="section-title">End-to-end ownership of production mobile apps</h2>
+      <!-- ---------- PROFILE ---------- -->
+      <section class="screen" id="profile" aria-labelledby="profile-title">
+        <header class="screen-head reveal">
+          <p class="screen-label"><span>01</span> / 07 — Profile</p>
+          <h2 class="screen-title" id="profile-title">End-to-end ownership of production mobile apps</h2>
         </header>
 
-        <div class="about-grid">
-          <div class="about-media reveal">
-            <img
+        <div class="profile-grid">
+          <aside class="profile-card reveal">
+            <img class="profile-avatar"
               src="assets/images/profile/ashikur-rahman-kayum.jpg"
               alt="Portrait of Ashikur Rahman Kayum, Flutter Developer"
-              width="480" height="600" loading="lazy" decoding="async"
-            />
-            <div class="about-media-tag">
-              <strong>Faridpur, Bangladesh</strong>
-              <span>Open to remote &amp; relocation</span>
+              width="200" height="200" loading="lazy" decoding="async" />
+            <p class="profile-name">Ashikur Rahman Kayum</p>
+            <p class="profile-role">Flutter Developer</p>
+
+            <ul class="profile-meta">
+              <li><span>Experience</span><strong>4+ years professional</strong></li>
+              <li><span>Shipped</span><strong>25+ apps live</strong></li>
+              <li><span>Based in</span><strong>Faridpur, Bangladesh</strong></li>
+              <li><span>Work mode</span><strong>Remote · Relocation</strong></li>
+            </ul>
+
+            <p class="profile-status"><span class="dot" aria-hidden="true"></span> Open to opportunities</p>
+            <a href="assets/cv/Ashikur-Rahman-Kayum-Flutter-Developer-CV.pdf" class="btn btn-primary btn-block btn-sm" download>Download CV</a>
+          </aside>
+
+          <div class="profile-body">
+            <div class="profile-story reveal">
+              <p>
+                I'm a Flutter developer working in a senior, self-directed capacity. Across 4+ years
+                I've shipped 25+ applications to the Google Play Store and Apple App Store spanning
+                HRM &amp; payroll, billing, e-commerce, POS, SaaS, community and Islamic lifestyle
+                products — including 4 featured products on Envato CodeCanyon.
+              </p>
+              <p>
+                I own a product on my own: architecture, UI/UX, development, testing and store
+                publishing. My day-to-day runs on Dart, Firebase, RESTful APIs and scalable state
+                management with GetX, BLoC and Provider. I write clean, documented code, fix bugs in
+                live production apps, and work independently inside remote, cross-functional Agile teams.
+              </p>
             </div>
-          </div>
 
-          <div class="about-copy reveal">
-            <p>
-              I'm a Flutter developer currently working in a senior, self-directed capacity.
-              Over 4+ years I've shipped 25+ applications to the Google Play Store and Apple
-              App Store across HRM, fintech, e-commerce, POS, SaaS, community and Islamic
-              lifestyle domains.
-            </p>
-            <p>
-              I'm comfortable owning a product on my own — from architecture and UI/UX through
-              development, testing and store publishing. My day-to-day is built on Dart,
-              Firebase, RESTful API integration and scalable state management with GetX, BLoC
-              and Provider. I write clean, well-documented code, diagnose and fix bugs in live
-              production apps, and work independently inside remote, cross-functional Agile
-              teams.
-            </p>
+            <ul class="profile-points">
+              <li class="reveal">
+                <span class="profile-point-k">Architecture &amp; state</span>
+                MVC / MVVM, GetX CLI project structure and pragmatic state management with GetX, BLoC and Provider.
+              </li>
+              <li class="reveal">
+                <span class="profile-point-k">Backend &amp; APIs</span>
+                RESTful API integration, Firebase (Firestore / Realtime DB), push notifications and multiple payment gateways.
+              </li>
+              <li class="reveal">
+                <span class="profile-point-k">Publishing &amp; support</span>
+                Independent Google Play Console and App Store Connect releases, documentation and ongoing buyer support.
+              </li>
+              <li class="reveal">
+                <span class="profile-point-k">Collaboration</span>
+                Remote-first Agile delivery, technical documentation and mentoring junior developers.
+              </li>
+            </ul>
 
-            <ul class="about-points">
-              <li>
-                <span class="about-point-title">Architecture &amp; state</span>
-                MVC / MVVM, GetX CLI project structure, and pragmatic state management
-                (GetX, BLoC, Provider).
+            <ul class="stat-row" aria-label="Career statistics">
+              <li class="stat-tile reveal">
+                <span class="stat-num" data-count-to="4" data-suffix="+">0</span>
+                <span class="stat-cap">Years professional Flutter</span>
               </li>
-              <li>
-                <span class="about-point-title">Backend &amp; APIs</span>
-                RESTful API integration, Firebase (Firestore / Realtime DB), push
-                notifications and multiple payment gateways.
+              <li class="stat-tile reveal">
+                <span class="stat-num" data-count-to="25" data-suffix="+">0</span>
+                <span class="stat-cap">Apps designed, built &amp; published</span>
               </li>
-              <li>
-                <span class="about-point-title">Publishing &amp; support</span>
-                Independent Google Play Console and App Store Connect releases, plus
-                documentation and ongoing buyer support.
+              <li class="stat-tile reveal">
+                <span class="stat-num" data-count-to="2">0</span>
+                <span class="stat-cap">Platforms — Android &amp; iOS</span>
               </li>
-              <li>
-                <span class="about-point-title">Collaboration</span>
-                Remote-first Agile delivery, technical documentation and mentoring junior
-                developers.
+              <li class="stat-tile reveal">
+                <span class="stat-num" data-count-to="4">0</span>
+                <span class="stat-cap">Featured products on CodeCanyon</span>
               </li>
             </ul>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ SKILLS ============ -->
-    <section class="section section-alt" id="skills">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="section-kicker">02 — Skills</p>
-          <h2 class="section-title">A focused mobile development toolkit</h2>
-          <p class="section-sub">Every technology below is one I use in shipped, maintained applications.</p>
+      <!-- ---------- SKILLS ---------- -->
+      <section class="screen" id="skills" aria-labelledby="skills-title">
+        <header class="screen-head reveal">
+          <p class="screen-label"><span>02</span> / 07 — Tech Stack</p>
+          <h2 class="screen-title" id="skills-title">A focused mobile development toolkit</h2>
+          <p class="screen-sub">Every technology below is one I use in shipped, maintained applications.</p>
         </header>
 
-        <div class="skills-grid">
-          <article class="skill-card reveal">
-            <h3 class="skill-card-title">Mobile Development</h3>
-            <ul class="chip-list">
-              <li class="chip">Flutter</li>
-              <li class="chip">Dart</li>
-              <li class="chip">Android</li>
-              <li class="chip">iOS</li>
-              <li class="chip">C</li>
-            </ul>
-          </article>
-
-          <article class="skill-card reveal">
-            <h3 class="skill-card-title">Architecture</h3>
-            <ul class="chip-list">
-              <li class="chip">MVC</li>
-              <li class="chip">MVVM</li>
-              <li class="chip">GetX CLI structure</li>
-              <li class="chip">OOP</li>
-              <li class="chip">Functional programming</li>
-            </ul>
-          </article>
-
-          <article class="skill-card reveal">
-            <h3 class="skill-card-title">State Management</h3>
-            <ul class="chip-list">
-              <li class="chip">GetX</li>
-              <li class="chip">BLoC</li>
-              <li class="chip">Provider</li>
-            </ul>
-          </article>
-
-          <article class="skill-card reveal">
-            <h3 class="skill-card-title">Backend &amp; APIs</h3>
-            <ul class="chip-list">
-              <li class="chip">RESTful APIs</li>
-              <li class="chip">Firebase Firestore</li>
-              <li class="chip">Realtime Database</li>
-              <li class="chip">Push notifications</li>
-              <li class="chip">Payment gateways</li>
-              <li class="chip">Google Maps</li>
-            </ul>
-          </article>
-
-          <article class="skill-card reveal">
-            <h3 class="skill-card-title">Databases &amp; Storage</h3>
-            <ul class="chip-list">
-              <li class="chip">Firebase</li>
-              <li class="chip">MySQL</li>
-              <li class="chip">SQLite (sqflite)</li>
-              <li class="chip">Hive</li>
-            </ul>
-          </article>
-
-          <article class="skill-card reveal">
-            <h3 class="skill-card-title">Tools &amp; Publishing</h3>
-            <ul class="chip-list">
-              <li class="chip">Git</li>
-              <li class="chip">VS Code</li>
-              <li class="chip">Android Studio</li>
-              <li class="chip">Google Play Console</li>
-              <li class="chip">App Store Connect</li>
-              <li class="chip">macOS / Linux</li>
-            </ul>
-          </article>
+        <div class="stack-grid" id="stackGrid">
+          <!-- rendered by js/interactions.js -->
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ EXPERIENCE ============ -->
-    <section class="section" id="experience">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="section-kicker">03 — Experience</p>
-          <h2 class="section-title">5+ years across mobile teams</h2>
+      <!-- ---------- EXPERIENCE ---------- -->
+      <section class="screen" id="experience" aria-labelledby="experience-title">
+        <header class="screen-head reveal">
+          <p class="screen-label"><span>03</span> / 07 — Career</p>
+          <h2 class="screen-title" id="experience-title">5+ years across mobile teams</h2>
+          <p class="screen-sub">Tap an entry to expand responsibilities and stack.</p>
         </header>
 
-        <ol class="timeline">
-          <li class="timeline-item reveal">
-            <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-card">
-              <div class="timeline-head">
-                <h3 class="timeline-role">Senior Flutter Developer</h3>
-                <span class="timeline-date">Mar 2025 — Present</span>
+        <ol class="timeline" id="timeline">
+          <li class="tl-item reveal">
+            <button class="tl-toggle" type="button" aria-expanded="true" aria-controls="tl-1">
+              <span class="tl-when">2025 — Now</span>
+              <span class="tl-role">Senior Flutter Developer</span>
+              <span class="tl-org">Theme · CodeCanyon-based software company</span>
+              <svg class="tl-chevron" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 15.4 5.7 9.1a1 1 0 0 1 1.4-1.4l4.9 4.9 4.9-4.9a1 1 0 0 1 1.4 1.4L12 15.4Z"/></svg>
+            </button>
+            <div class="tl-panel" id="tl-1">
+              <div class="tl-panel-inner">
+                <ul>
+                  <li>Solely responsible for all Flutter projects — architecture, UI/UX design, development, testing and deployment end to end.</li>
+                  <li>Design and build high-quality Flutter app templates and full products published on Envato CodeCanyon.</li>
+                  <li>Independently manage Google Play Store and Apple App Store publication for every product.</li>
+                  <li>Provide buyer support, technical documentation and continuous feature updates for all published items.</li>
+                </ul>
+                <div class="tl-tags"><span>Flutter</span><span>Dart</span><span>Firebase</span><span>REST API</span><span>Play Console</span><span>App Store Connect</span></div>
               </div>
-              <p class="timeline-company">Theme · CodeCanyon-based software company</p>
-              <ul class="timeline-points">
-                <li>Sole responsibility for all Flutter projects end to end — architecture, UI/UX, development, testing and deployment.</li>
-                <li>Design and build high-quality Flutter app templates and full-scale products published on Envato CodeCanyon.</li>
-                <li>Independently manage Google Play Store and Apple App Store submissions, releases and version updates.</li>
-                <li>Provide ongoing buyer support, technical documentation and continuous feature updates.</li>
-              </ul>
-              <ul class="chip-list chip-list-sm">
-                <li class="chip">Flutter</li><li class="chip">Dart</li><li class="chip">Firebase</li><li class="chip">REST API</li><li class="chip">Play Console</li><li class="chip">App Store Connect</li>
-              </ul>
             </div>
           </li>
 
-          <li class="timeline-item reveal">
-            <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-card">
-              <div class="timeline-head">
-                <h3 class="timeline-role">Flutter Developer</h3>
-                <span class="timeline-date">Jan 2022 — Mar 2025</span>
+          <li class="tl-item reveal">
+            <button class="tl-toggle" type="button" aria-expanded="false" aria-controls="tl-2">
+              <span class="tl-when">2022 — 2025</span>
+              <span class="tl-role">Flutter Developer</span>
+              <span class="tl-org">Creative Distribution UK Ltd. · Remote · London, UK</span>
+              <svg class="tl-chevron" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 15.4 5.7 9.1a1 1 0 0 1 1.4-1.4l4.9 4.9 4.9-4.9a1 1 0 0 1 1.4 1.4L12 15.4Z"/></svg>
+            </button>
+            <div class="tl-panel" id="tl-2">
+              <div class="tl-panel-inner">
+                <ul>
+                  <li>Designed, built and maintained high-quality Flutter applications for both iOS and Android.</li>
+                  <li>Wrote clean, maintainable, well-documented Dart code following industry best practices.</li>
+                  <li>Owned features across the full lifecycle — requirements and architecture through to deployment.</li>
+                  <li>Identified, diagnosed and resolved bugs across active production apps, improving stability and UX.</li>
+                  <li>Researched emerging tools and collaborated cross-functionally in an Agile, remote-first team (3 yrs 2 mos).</li>
+                </ul>
+                <div class="tl-tags"><span>Flutter</span><span>Dart</span><span>iOS</span><span>Android</span><span>REST API</span><span>Agile</span></div>
               </div>
-              <p class="timeline-company">Creative Distribution UK Ltd. · Remote · London, United Kingdom</p>
-              <ul class="timeline-points">
-                <li>Designed, built and maintained high-quality Flutter applications for both iOS and Android.</li>
-                <li>Wrote clean, maintainable, well-documented Dart code in line with industry best practices.</li>
-                <li>Owned features across the full lifecycle — requirements gathering and architecture through to deployment.</li>
-                <li>Identified, diagnosed and resolved bugs across live production applications, improving stability and UX.</li>
-                <li>Researched emerging tools and technologies and collaborated cross-functionally in an Agile, remote-first team.</li>
-              </ul>
-              <ul class="chip-list chip-list-sm">
-                <li class="chip">Flutter</li><li class="chip">Dart</li><li class="chip">iOS</li><li class="chip">Android</li><li class="chip">REST API</li><li class="chip">Agile</li>
-              </ul>
             </div>
           </li>
 
-          <li class="timeline-item reveal">
-            <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-card">
-              <div class="timeline-head">
-                <h3 class="timeline-role">Project Coordinator</h3>
-                <span class="timeline-date">Jul 2020 — Dec 2021</span>
+          <li class="tl-item reveal">
+            <button class="tl-toggle" type="button" aria-expanded="false" aria-controls="tl-3">
+              <span class="tl-when">2020 — 2021</span>
+              <span class="tl-role">Project Coordinator</span>
+              <span class="tl-org">Dotcom System Ltd. · Karwan Bazar, Dhaka</span>
+              <svg class="tl-chevron" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 15.4 5.7 9.1a1 1 0 0 1 1.4-1.4l4.9 4.9 4.9-4.9a1 1 0 0 1 1.4 1.4L12 15.4Z"/></svg>
+            </button>
+            <div class="tl-panel" id="tl-3">
+              <div class="tl-panel-inner">
+                <ul>
+                  <li>Managed and maintained the organisation's Flutter mobile app development training programme.</li>
+                  <li>Created structured technical documentation, lesson plans and progress reports for course delivery.</li>
+                  <li>Supported and mentored trainees through hands-on Flutter instruction and backup classes.</li>
+                  <li>Provided technical support and troubleshooting to trainees and staff (1 yr 6 mos).</li>
+                </ul>
+                <div class="tl-tags"><span>Flutter</span><span>Mentoring</span><span>Documentation</span></div>
               </div>
-              <p class="timeline-company">Dotcom System Ltd. · Karwan Bazar, Dhaka, Bangladesh</p>
-              <ul class="timeline-points">
-                <li>Managed and maintained the organisation's Flutter mobile app development training programme.</li>
-                <li>Created structured technical documentation, lesson plans and progress reports for course delivery.</li>
-                <li>Mentored and supported trainees through hands-on Flutter instruction and backup classes.</li>
-                <li>Delivered technical support and troubleshooting to trainees and staff.</li>
-              </ul>
-              <ul class="chip-list chip-list-sm">
-                <li class="chip">Flutter</li><li class="chip">Mentoring</li><li class="chip">Technical documentation</li>
-              </ul>
             </div>
           </li>
         </ol>
 
         <div class="edu-grid reveal">
           <div class="edu-card">
-            <h3 class="edu-title">Diploma in Engineering</h3>
-            <p>Faridpur Polytechnic Institute, Bangladesh · Completed 2018</p>
+            <h3>Diploma in Engineering</h3>
+            <p>Faridpur Polytechnic Institute · Passed 2018</p>
           </div>
           <div class="edu-card">
-            <h3 class="edu-title">B.Sc. in Computer Science &amp; Engineering</h3>
-            <p>Dhaka International University (DIU), Bangladesh · 2019 — Present</p>
+            <h3>B.Sc. in Computer Science &amp; Engineering</h3>
+            <p>Dhaka International University (DIU) · 2019 — Present</p>
           </div>
           <div class="edu-card">
-            <h3 class="edu-title">Languages</h3>
+            <h3>Languages</h3>
             <p>Bengali — Native · English — Professional working proficiency</p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ PROJECTS ============ -->
-    <section class="section section-alt" id="projects">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="section-kicker">04 — Projects</p>
-          <h2 class="section-title">Selected production applications</h2>
-          <p class="section-sub">A sample of shipped work. Beyond these, the 25+ app portfolio includes e-commerce, POS, SaaS, community and Islamic lifestyle apps.</p>
+      <!-- ---------- PROJECTS ---------- -->
+      <section class="screen" id="projects" aria-labelledby="projects-title">
+        <header class="screen-head reveal">
+          <p class="screen-label"><span>04</span> / 07 — Work</p>
+          <h2 class="screen-title" id="projects-title">Selected production applications</h2>
+          <p class="screen-sub">Featured CodeCanyon products and store-published apps. Beyond these, the 25+ portfolio spans e-commerce, POS, SaaS, community and Islamic lifestyle apps.</p>
         </header>
 
-        <div class="filter-bar reveal" role="group" aria-label="Filter projects by technology">
+        <div class="filter-bar reveal" role="group" aria-label="Filter work by technology">
           <button class="filter-btn is-active" type="button" data-filter="all">All</button>
           <button class="filter-btn" type="button" data-filter="flutter">Flutter</button>
-          <button class="filter-btn" type="button" data-filter="android">Android</button>
-          <button class="filter-btn" type="button" data-filter="ios">iOS</button>
           <button class="filter-btn" type="button" data-filter="firebase">Firebase</button>
-          <button class="filter-btn" type="button" data-filter="api">API</button>
+          <button class="filter-btn" type="button" data-filter="api">REST API</button>
+          <button class="filter-btn" type="button" data-filter="ios">iOS</button>
         </div>
 
-        <div class="projects-grid" id="projectsGrid">
-          <!-- Cards are rendered by js/projects.js -->
+        <div class="work-grid" id="workGrid">
+          <!-- rendered by js/projects.js -->
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ SERVICES ============ -->
-    <section class="section" id="services">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="section-kicker">05 — Services</p>
-          <h2 class="section-title">How I can help your product</h2>
+      <!-- ---------- SERVICES ---------- -->
+      <section class="screen" id="services" aria-labelledby="services-title">
+        <header class="screen-head reveal">
+          <p class="screen-label"><span>05</span> / 07 — Services</p>
+          <h2 class="screen-title" id="services-title">What I build</h2>
         </header>
 
-        <div class="services-grid">
-          <article class="service-card reveal">
+        <ul class="services-list" id="servicesList">
+          <li class="service reveal">
             <span class="service-num">01</span>
-            <h3 class="service-title">Flutter App Development</h3>
-            <p>Cross-platform Android &amp; iOS applications built from a single Flutter codebase, architected for scale and maintainability.</p>
-          </article>
-          <article class="service-card reveal">
+            <span class="service-tx">
+              <strong>Flutter App Development</strong>
+              <em>Cross-platform Android &amp; iOS apps from a single Flutter codebase, architected for scale and maintainability.</em>
+            </span>
+            <span class="service-arrow" aria-hidden="true">→</span>
+          </li>
+          <li class="service reveal">
             <span class="service-num">02</span>
-            <h3 class="service-title">Android &amp; iOS Delivery</h3>
-            <p>Production-ready builds, Google Play Console and App Store Connect submissions, releases and version updates.</p>
-          </article>
-          <article class="service-card reveal">
+            <span class="service-tx">
+              <strong>Android &amp; iOS Delivery</strong>
+              <em>Production builds, Play Console and App Store Connect submissions, releases and version updates.</em>
+            </span>
+            <span class="service-arrow" aria-hidden="true">→</span>
+          </li>
+          <li class="service reveal">
             <span class="service-num">03</span>
-            <h3 class="service-title">REST API Integration</h3>
-            <p>Connecting apps to backend services with clean data layers, authentication flows and robust error handling.</p>
-          </article>
-          <article class="service-card reveal">
+            <span class="service-tx">
+              <strong>REST API Integration</strong>
+              <em>Clean data layers, authentication flows and robust error handling against any backend.</em>
+            </span>
+            <span class="service-arrow" aria-hidden="true">→</span>
+          </li>
+          <li class="service reveal">
             <span class="service-num">04</span>
-            <h3 class="service-title">Firebase Integration</h3>
-            <p>Authentication, Firestore / Realtime Database, push notifications and other Firebase services wired end to end.</p>
-          </article>
-          <article class="service-card reveal">
+            <span class="service-tx">
+              <strong>Firebase Solutions</strong>
+              <em>Auth, Firestore / Realtime Database, push notifications and Cloud services wired end to end.</em>
+            </span>
+            <span class="service-arrow" aria-hidden="true">→</span>
+          </li>
+          <li class="service reveal">
             <span class="service-num">05</span>
-            <h3 class="service-title">UI Implementation</h3>
-            <p>Turning design files into responsive, pixel-accurate Flutter interfaces with smooth interactions.</p>
-          </article>
-          <article class="service-card reveal">
+            <span class="service-tx">
+              <strong>UI Implementation</strong>
+              <em>Design files turned into responsive, pixel-accurate Flutter interfaces with smooth interactions.</em>
+            </span>
+            <span class="service-arrow" aria-hidden="true">→</span>
+          </li>
+          <li class="service reveal">
             <span class="service-num">06</span>
-            <h3 class="service-title">App Maintenance</h3>
-            <p>Bug fixing on live apps, performance optimisation, dependency upgrades and incremental feature development.</p>
-          </article>
+            <span class="service-tx">
+              <strong>App Maintenance</strong>
+              <em>Bug fixing on live apps, performance work, dependency upgrades and incremental features.</em>
+            </span>
+            <span class="service-arrow" aria-hidden="true">→</span>
+          </li>
+        </ul>
+
+        <!-- Developer / code moment -->
+        <div class="code-band reveal" aria-label="Code sample">
+          <div class="code-window">
+            <div class="code-bar">
+              <span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="code-file">mobile_experience.dart</span>
+            </div>
+            <pre class="code-body"><code id="codeType"></code><span class="code-caret" aria-hidden="true"></span></pre>
+          </div>
+          <div class="code-note">
+            <p class="screen-label"><span>06</span> — Code</p>
+            <h3>The portfolio is the demo.</h3>
+            <p>This site is hand-built in HTML5, CSS3 and vanilla JavaScript — no frameworks, no build step — with the same attention to interaction, motion and structure I bring to Flutter.</p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ PROCESS ============ -->
-    <section class="section section-alt" id="process" aria-label="Development process">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="section-kicker">06 — Process</p>
-          <h2 class="section-title">From idea to a maintained app</h2>
-        </header>
+      <!-- ---------- CONTACT ---------- -->
+      <section class="screen screen-contact" id="contact" aria-labelledby="contact-title">
+        <div class="contact-inner reveal">
+          <p class="screen-label"><span>07</span> / 07 — Contact</p>
+          <h2 class="screen-title" id="contact-title">Ready to build?</h2>
+          <p class="contact-lead">Have a mobile app idea? Let's turn it into a production-ready product on Android and iOS.</p>
+          <button class="btn btn-primary btn-lg" type="button" data-open-contact data-magnetic>Start a Conversation</button>
 
-        <ol class="process-list">
-          <li class="process-step reveal"><span class="process-index">01</span><h3>Requirement</h3><p>Understand the product, users and constraints.</p></li>
-          <li class="process-step reveal"><span class="process-index">02</span><h3>Planning</h3><p>Scope, architecture and delivery milestones.</p></li>
-          <li class="process-step reveal"><span class="process-index">03</span><h3>UI / UX</h3><p>Screen flows and responsive interface design.</p></li>
-          <li class="process-step reveal"><span class="process-index">04</span><h3>Development</h3><p>Feature build with clean, documented Dart.</p></li>
-          <li class="process-step reveal"><span class="process-index">05</span><h3>API Integration</h3><p>Backend, Firebase and payment connectivity.</p></li>
-          <li class="process-step reveal"><span class="process-index">06</span><h3>Testing</h3><p>Device testing, bug fixing and stabilisation.</p></li>
-          <li class="process-step reveal"><span class="process-index">07</span><h3>Deployment</h3><p>Play Store &amp; App Store submission and release.</p></li>
-          <li class="process-step reveal"><span class="process-index">08</span><h3>Maintenance</h3><p>Updates, monitoring and ongoing support.</p></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section class="section" id="contact">
-      <div class="container contact-grid">
-        <div class="contact-copy reveal">
-          <p class="section-kicker">07 — Contact</p>
-          <h2 class="section-title">Have a mobile app idea?<br />Let's build something great.</h2>
-          <p class="section-sub">I'm open to remote roles, relocation and freelance projects. The fastest way to reach me is email.</p>
-
-          <ul class="contact-list">
-            <li>
-              <span class="contact-list-label">Email</span>
-              <a href="mailto:kfkayum@gmail.com">kfkayum@gmail.com</a>
-            </li>
-            <li>
-              <span class="contact-list-label">Phone</span>
-              <a href="tel:+8801781795948">+880 1781 795948</a>
-            </li>
-            <li>
-              <span class="contact-list-label">Location</span>
-              <span>Faridpur, Bangladesh · Remote / Relocation</span>
-            </li>
-            <li>
-              <span class="contact-list-label">GitHub</span>
-              <a href="https://github.com/kfkayum" target="_blank" rel="noopener noreferrer">github.com/kfkayum</a>
-            </li>
-            <li>
-              <span class="contact-list-label">LinkedIn</span>
-              <!-- TODO: add real LinkedIn URL (not on CV) -->
-              <span>Available on request</span>
-            </li>
+          <ul class="contact-quick">
+            <li><a href="mailto:kfkayum@gmail.com">kfkayum@gmail.com</a></li>
+            <li><a href="https://wa.me/8801781795948" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            <li><a href="https://github.com/kfkayum" target="_blank" rel="noopener noreferrer">github.com/kfkayum</a></li>
           </ul>
         </div>
+      </section>
 
-        <form class="contact-form reveal" id="contactForm" action="mailto:kfkayum@gmail.com" method="post" enctype="text/plain" novalidate>
-          <div class="field">
-            <label for="cf-name">Name</label>
-            <input type="text" id="cf-name" name="name" autocomplete="name" required />
-          </div>
-          <div class="field">
-            <label for="cf-email">Email</label>
-            <input type="email" id="cf-email" name="email" autocomplete="email" required />
-          </div>
-          <div class="field">
-            <label for="cf-subject">Subject</label>
-            <input type="text" id="cf-subject" name="subject" required />
-          </div>
-          <div class="field">
-            <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" rows="5" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
-          <p class="form-note" id="formNote" role="status" aria-live="polite">
-            This form opens your email client with the message pre-filled — nothing is sent from the page itself.
-          </p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <span class="brand-text">Ashikur Rahman Kayum</span>
+      <footer class="app-footer">
+        <p><strong>Ashikur Rahman Kayum</strong></p>
         <p>Flutter Developer · Mobile App Developer · Android &amp; iOS</p>
-      </div>
+        <p>© <span id="year">2026</span> · Built from scratch with HTML, CSS &amp; vanilla JS.</p>
+      </footer>
+    </main>
 
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    <!-- ============ MOBILE TAB BAR ============ -->
+    <nav class="tabbar" aria-label="Primary navigation">
+      <span class="tabbar-indicator" aria-hidden="true"></span>
+      <a href="#home" class="tab is-active" data-screen="Home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3.2 3 10.3V21a1 1 0 0 0 1 1h5v-6h6v6h5a1 1 0 0 0 1-1V10.3L12 3.2Z"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="#profile" class="tab" data-screen="Profile">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.2 0-8 2.4-8 5.3V21a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-1.7c0-2.9-3.8-5.3-8-5.3Z"/></svg>
+        <span>Profile</span>
+      </a>
+      <a href="#projects" class="tab" data-screen="Work">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Zm5 15a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></svg>
+        <span>Work</span>
+      </a>
+      <a href="#skills" class="tab" data-screen="Tech Stack">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 3 7l9 5 9-5-9-5Zm-9 9.1 9 5 9-5-1.7-.9-7.3 4-7.3-4L3 11.1Zm0 5 9 5 9-5-1.7-.9-7.3 4-7.3-4L3 16.1Z"/></svg>
+        <span>Stack</span>
+      </a>
+      <a href="#contact" class="tab" data-screen="Contact">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm8 7 8-5H4l8 5Z"/></svg>
+        <span>Contact</span>
+      </a>
+    </nav>
 
-      <div class="footer-social">
-        <a href="https://github.com/kfkayum" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2A10 10 0 0 0 8.84 21.5c.5.09.66-.22.66-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.16.58.67.48A10 10 0 0 0 12 2Z"/></svg>
-        </a>
-        <a href="mailto:kfkayum@gmail.com" aria-label="Email">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v.4l8 5 8-5V6H4Zm16 2.9-7.47 4.67a1 1 0 0 1-1.06 0L4 8.9V18h16V8.9Z"/></svg>
-        </a>
-      </div>
+    <button class="theme-toggle theme-toggle-float" id="themeToggleMobile" type="button" aria-label="Switch colour theme" aria-pressed="false">
+      <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1Zm0-19a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1Zm10 11a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1ZM4 12a1 1 0 0 1-1 1H2a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1Zm14.95 6.36a1 1 0 0 1-1.41 0l-.71-.71a1 1 0 1 1 1.41-1.41l.71.7a1 1 0 0 1 0 1.42ZM7.17 7.17a1 1 0 0 1-1.41 0l-.71-.71A1 1 0 0 1 6.46 5.05l.71.71a1 1 0 0 1 0 1.41Zm11.78-2.12a1 1 0 0 1 0 1.41l-.71.71a1 1 0 1 1-1.41-1.41l.71-.71a1 1 0 0 1 1.41 0ZM7.17 16.83a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.41l.71-.71a1 1 0 0 1 1.41 0Z"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21.64 13a1 1 0 0 0-1.05-.14 8 8 0 0 1-10.45-10.5A1 1 0 0 0 9 1a10 10 0 1 0 13 13 1 1 0 0 0-.36-1Z"/></svg>
+    </button>
+  </div>
 
-      <p class="footer-copy">© <span id="year">2026</span> Ashikur Rahman Kayum. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top" hidden>
-    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 8.3 5.7 14.6a1 1 0 0 1-1.4-1.4l7-7a1 1 0 0 1 1.4 0l7 7a1 1 0 0 1-1.4 1.4L12 8.3Z"/></svg>
-  </button>
-
-  <!-- ============ PROJECT MODAL ============ -->
-  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
-    <div class="modal-overlay" data-modal-close></div>
-    <div class="modal-dialog" role="document">
-      <button class="modal-close" type="button" data-modal-close aria-label="Close dialog">
+  <!-- ============ CONTACT SHEET ============ -->
+  <div class="sheet" id="contactSheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
+    <div class="sheet-overlay" data-sheet-close></div>
+    <div class="sheet-panel" role="document">
+      <div class="sheet-grabber" aria-hidden="true"></div>
+      <button class="sheet-close" type="button" data-sheet-close aria-label="Close">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="m12 10.6 5-5a1 1 0 0 1 1.4 1.4l-5 5 5 5a1 1 0 0 1-1.4 1.4l-5-5-5 5a1 1 0 0 1-1.4-1.4l5-5-5-5A1 1 0 0 1 7 5.6l5 5Z"/></svg>
       </button>
-      <div class="modal-body" id="modalBody">
-        <!-- Filled by js/projects.js -->
-      </div>
+
+      <p class="sheet-eyebrow">New message</p>
+      <h2 class="sheet-title" id="sheetTitle">Let's talk about your app</h2>
+      <p class="sheet-sub">Open to remote roles, relocation and freelance projects. The fastest way to reach me is email.</p>
+
+      <form class="sheet-form" id="contactForm" action="mailto:kfkayum@gmail.com" method="post" enctype="text/plain" novalidate>
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+        <p class="form-note" id="formNote" role="status" aria-live="polite">
+          This opens your email client with the message pre-filled — nothing is sent from the page itself.
+        </p>
+      </form>
+
+      <ul class="sheet-contacts">
+        <li><span>Email</span><a href="mailto:kfkayum@gmail.com">kfkayum@gmail.com</a></li>
+        <li><span>Phone</span><a href="tel:+8801781795948">+880 1781 795948</a></li>
+        <li><span>WhatsApp</span><a href="https://wa.me/8801781795948" target="_blank" rel="noopener noreferrer">wa.me/8801781795948</a></li>
+        <li><span>GitHub</span><a href="https://github.com/kfkayum" target="_blank" rel="noopener noreferrer">github.com/kfkayum</a></li>
+        <li><span>Location</span><span>Faridpur, Bangladesh · Remote / Relocation</span></li>
+        <li><span>Availability</span><span>Open to opportunities</span></li>
+      </ul>
     </div>
   </div>
 
+  <!-- ============ PROJECT DETAIL ============ -->
+  <div class="sheet sheet-wide" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle" hidden>
+    <div class="sheet-overlay" data-sheet-close></div>
+    <div class="sheet-panel" role="document">
+      <div class="sheet-grabber" aria-hidden="true"></div>
+      <button class="sheet-close" type="button" data-sheet-close aria-label="Close">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="m12 10.6 5-5a1 1 0 0 1 1.4 1.4l-5 5 5 5a1 1 0 0 1-1.4 1.4l-5-5-5 5a1 1 0 0 1-1.4-1.4l5-5-5-5A1 1 0 0 1 7 5.6l5 5Z"/></svg>
+      </button>
+      <div class="pm-body" id="pmBody"><!-- filled by js/projects.js --></div>
+    </div>
+  </div>
+
+  <script src="js/theme.js" defer></script>
   <script src="js/navigation.js" defer></script>
   <script src="js/animations.js" defer></script>
+  <script src="js/interactions.js" defer></script>
   <script src="js/projects.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
