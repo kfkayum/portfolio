@@ -29,38 +29,38 @@
       links: [
         { label: "View on CodeCanyon", url: "https://codecanyon.net/item/workzen-hrm-payroll-management-system-with-mobile-app/62472695" }
       ],
-      shot: null
+      shot: "assets/images/projects/workzen.jpg"
     },
     {
-      id: "invoicex", mark: "I", name: "InvoiceX",
-      cat: "Billing & Invoicing · CodeCanyon",
-      tagline: "Billing & Invoice Management System",
+      id: "paysuite", mark: "P", name: "PaySuite",
+      cat: "SaaS Billing · CodeCanyon",
+      tagline: "SaaS Invoice & Billing Management System",
       description:
-        "A full-featured invoicing application enabling businesses to generate, track and manage invoices and payments with multi-gateway support.",
-      role: "End-to-end Flutter development — architecture, UI/UX, build and dual-store release.",
+        "A multi-tenant SaaS billing and accounting platform for small businesses — turning a local operation into a global brand across iOS and Android with simplified daily financial operations.",
+      role: "End-to-end Flutter development — multi-tenant architecture, UI/UX, build and dual-store release.",
       platforms: ["Android", "iOS"],
       categories: ["flutter", "android", "ios", "firebase", "api"],
-      tech: ["Flutter", "Dart", "Firebase", "ML Features", "Push Notifications", "REST API", "Payment Gateways"],
+      tech: ["Flutter", "Dart", "Multi-Tenant SaaS", "Advanced Payment Gateways", "Firebase", "REST API"],
       features: [
-        "Invoice generation and tracking",
-        "Payment management with multiple gateways",
-        "ML-assisted data entry",
-        "Firebase-backed sync and storage",
-        "Push notifications for payment events"
+        "Multi-tenant SaaS architecture",
+        "Invoice, billing and estimate management",
+        "Advanced payment gateway integration",
+        "Dashboard, transactions and customer management",
+        "Built on the latest Flutter with regular updates"
       ],
       links: [
-        { label: "View on CodeCanyon", url: "https://codecanyon.net/item/invoicex-billing-and-invoice-management-systems/52623729" }
+        { label: "View on CodeCanyon", url: "https://codecanyon.net/item/paysuite-saas-invoice-and-billing-management-system/61794730" }
       ],
-      shot: null
+      shot: "assets/images/projects/paysuite.jpg"
     },
     {
       id: "tribu", mark: "T", name: "Tribu",
       cat: "Club Management · CodeCanyon",
-      tagline: "Club & committee management for web, Android & iOS",
+      tagline: "Club & committee management for Android & iOS",
       description:
         "A club and committee management platform for membership-based organisations — member and role management, QR-code meeting attendance, news and awards, and a full admin dashboard with reporting.",
-      role: "End-to-end Flutter development across web, Android and iOS.",
-      platforms: ["Web", "Android", "iOS"],
+      role: "End-to-end Flutter development for Android and iOS.",
+      platforms: ["Android", "iOS"],
       categories: ["flutter", "android", "ios", "api"],
       tech: ["Flutter", "Role-Based Access Control", "QR Code Attendance", "PayPal", "Push Notifications", "REST API"],
       features: [
@@ -73,7 +73,7 @@
       links: [
         { label: "View on CodeCanyon", url: "https://codecanyon.net/item/tribu-club-management-android-and-ios-app/62967899" }
       ],
-      shot: null
+      shot: "assets/images/projects/tribu.jpg"
     },
     {
       id: "dutch-flow", mark: "D", name: "Dutch Flow",
@@ -93,10 +93,9 @@
         "REST API-driven content"
       ],
       links: [
-        { label: "View on Google Play", url: "https://play.google.com/store/apps/details?id=com.dutchflow.academy" },
-        { label: "View on App Store", url: "https://apps.apple.com/kr/app/dutch-flow/id6754239230" }
+        { label: "View on Google Play", url: "https://play.google.com/store/apps/details?id=com.dutchflow.academy" }
       ],
-      shot: null
+      shot: "assets/images/projects/dutch-flow.jpg", icon: true
     },
     {
       id: "uk-passport", mark: "P", name: "UK Passport Photo App",
@@ -118,7 +117,7 @@
       links: [
         { label: "View on Google Play", url: "https://play.google.com/store/apps/details?id=com.saithy.passport_photo" }
       ],
-      shot: null
+      shot: "assets/images/projects/uk-passport.jpg", icon: true
     },
     {
       id: "troubleshoot", mark: "S", name: "Troubleshoot",
@@ -140,12 +139,12 @@
       links: [
         { label: "View on Google Play", url: "https://play.google.com/store/apps/details?id=com.troubleshootltd.buyer" }
       ],
-      shot: null
+      shot: "assets/images/projects/troubleshoot.jpg", icon: true
     }
   ];
 
   var EXTERNAL_SVG =
-    '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3ZM5 5h5v2H5v12h12v-5h2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/></svg>';
+    '<svg class="ic" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>';
 
   var grid = document.getElementById("workGrid");
   var filterBar = document.querySelector(".filter-bar");
@@ -156,7 +155,7 @@
   /* ---------- render cards ---------- */
   function cardHTML(p) {
     var visual = p.shot
-      ? '<img src="' + p.shot + '" alt="' + p.name + ' app screenshot" loading="lazy" decoding="async" />'
+      ? '<img src="' + p.shot + '" alt="' + p.name + (p.icon ? " app icon" : " preview") + '" loading="lazy" decoding="async" />'
       : '<span class="work-mark" aria-hidden="true">' + p.mark + "</span>";
 
     var links = p.links.map(function (l) {
@@ -166,7 +165,7 @@
 
     return (
       '<article class="work-card reveal" data-categories="' + p.categories.join(" ") + '">' +
-        '<div class="work-visual">' + visual +
+        '<div class="work-visual' + (p.icon ? " is-icon" : "") + '">' + visual +
           '<div class="work-platforms">' +
             p.platforms.map(function (pl) { return "<span>" + pl + "</span>"; }).join("") +
           "</div>" +
@@ -180,7 +179,7 @@
           "</div>" +
           '<div class="work-actions">' +
             '<button class="work-details" type="button" data-project="' + p.id + '">' +
-              'Details <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M13.2 5.2a1 1 0 0 1 1.4 0l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 0 1-1.4-1.4l4.3-4.3H4a1 1 0 1 1 0-2h13.5l-4.3-4.3a1 1 0 0 1 0-1.4Z"/></svg>' +
+              'Details <svg class="ic" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>' +
             "</button>" +
             links +
           "</div>" +

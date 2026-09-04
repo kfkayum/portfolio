@@ -53,7 +53,8 @@
   --rail-w: 250px;
   --status-h: 36px;
   --tabbar-h: 66px;
-  --maxw: 1080px;
+  --maxw: 1140px;
+  --measure: 68ch;
   --pad-screen: clamp(1.25rem, 4vw, 4rem);
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);

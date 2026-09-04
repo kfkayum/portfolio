@@ -3,19 +3,36 @@
    Desktop = left rail. Below 1024px = mobile app shell with bottom tab bar.
    ========================================================================== */
 
-/* ---------- large desktop ---------- */
-@media (min-width: 1600px) {
-  :root { --maxw: 1180px; --rail-w: 280px; }
+/* ---------- large desktop — a centred content column, roomier rail ---------- */
+@media (min-width: 1440px) {
+  :root { --maxw: 1180px; --rail-w: 276px; --status-h: 38px; }
+  body { font-size: 16.5px; }
+  .phone { width: 336px; }
+  .home-stage { width: min(480px, 100%); }
+}
+@media (min-width: 1800px) {
+  :root { --maxw: 1320px; --rail-w: 312px; }
+  body { font-size: 17px; }
+  .phone { width: 372px; }
+  .home-stage { width: min(560px, 100%); }
+}
+@media (min-width: 2300px) {
+  :root { --maxw: 1420px; --rail-w: 360px; }
+  body { font-size: 17.5px; }
+  .phone { width: 400px; }
 }
 
 /* ---------- tighten desktop ---------- */
 @media (max-width: 1200px) {
-  .float-card-code { left: -6%; max-width: 220px; }
   .float-card-fire { right: -4%; }
   .float-card-store { left: -2%; }
 }
 
 @media (max-width: 1080px) {
+  .stack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stack-card { min-height: 220px; }
+  .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .profile-grid { grid-template-columns: 320px 1fr; }
   .home-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .home-stage { order: -1; min-height: 440px; }
   .home-lead, .home-facts { max-width: none; }
@@ -100,7 +117,7 @@
 
   /* layout collapses */
   .profile-grid { grid-template-columns: 1fr; }
-  .profile-card { position: static; }
+  .profile-card { position: static; max-width: 420px; margin-inline: auto; }
   .profile-points { grid-template-columns: 1fr; }
   .stat-row { grid-template-columns: 1fr 1fr; }
   .edu-grid { grid-template-columns: 1fr; }
@@ -111,8 +128,7 @@
   .tl-org { grid-column: 1; grid-row: 3; }
   .tl-chevron { grid-column: 2; grid-row: 1 / span 3; align-self: center; }
 
-  .work-card { grid-template-columns: 1fr; }
-  .work-visual { min-height: 180px; aspect-ratio: 16 / 10; }
+  .work-grid { grid-template-columns: 1fr; }
 
   .sheet-panel { width: 100%; }
   .sheet-wide .sheet-panel { width: 100%; }
@@ -120,9 +136,14 @@
 
 /* ---------- tablet portrait ---------- */
 @media (max-width: 768px) {
+  .screen { padding-block: clamp(2.25rem, 5vh, 3.25rem); }
+  .screen-head { margin-bottom: clamp(1.5rem, 4vh, 2.5rem); }
   .home-title { font-size: clamp(2rem, 8vw, 3rem); overflow-wrap: break-word; }
   .screen-title { font-size: clamp(1.6rem, 6.6vw, 2.3rem); }
   .stack-grid { grid-template-columns: 1fr; }
+  .stack-card { min-height: 0; }
+  .services-list { grid-template-columns: 1fr; }
+  .work-grid { grid-template-columns: 1fr; }
   .home-stage { width: min(300px, 80vw); min-height: 360px; }
   .float-card { display: none; }
   .phone { width: min(240px, 66vw); }
@@ -160,12 +181,11 @@
 
   .phone { width: min(230px, 62vw); }
 
-  .work-card { padding: 1.1rem; border-radius: var(--r-lg); }
+  .work-body { padding: 1.2rem; }
   .work-name { font-size: 1.2rem; }
 
-  .service { grid-template-columns: auto 1fr; gap: 0.9rem; }
+  .service { grid-template-columns: auto 1fr; gap: 0.5rem 0.9rem; padding: 1.2rem; }
   .service-arrow { display: none; }
-  .service:hover { padding-left: 0.5rem; }
 }
 
 /* ---------- very small ---------- */

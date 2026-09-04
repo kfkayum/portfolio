@@ -89,17 +89,20 @@
   var codeEl = document.getElementById("codeType");
   if (codeEl) {
     var LINES = [
-      ['c', "// This site — hand-built, no framework.\n"],
-      ['k', "class "], ['t', "MobileExperience"], ['', " {\n"],
-      ['', "  final "], ['', "framework = "], ['s', '"Flutter"'], ['', ";\n"],
-      ['', "  final "], ['', "platforms = ["], ['s', '"Android"'], ['', ", "], ['s', '"iOS"'], ['', "];\n"],
-      ['', "  final "], ['', "years = "], ['', "4"], ['', ";\n\n"],
-      ['', "  "], ['t', "Widget"], ['', " build() {\n"],
-      ['', "    return "], ['t', "ProductionReadyApp"], ['', "(\n"],
-      ['', "      cleanArchitecture: "], ['k', "true"], ['', ",\n"],
-      ['', "      shipped: "], ['', "25"], ['', ",\n"],
-      ['', "    );\n"],
-      ['', "  }\n"],
+      ['c', "// flutter_developer.dart\n\n"],
+      ['k', "class "], ['t', "FlutterDeveloper"], ['', " "], ['k', "extends "], ['t', "StatelessWidget"], ['', " {\n"],
+      ['', "  "], ['k', "const "], ['t', "FlutterDeveloper"], ['', "({super.key});\n\n"],
+      ['', "  "], ['k', "final "], ['', "years = "], ['', "4"], ['', ";\n"],
+      ['', "  "], ['k', "final "], ['', "appsShipped = "], ['', "25"], ['', ";\n"],
+      ['', "  "], ['k', "final "], ['', "stack = "], ['k', "const "], ['', "["],
+      ['s', '"Flutter"'], ['', ", "], ['s', '"Dart"'], ['', ", "], ['s', '"Firebase"'], ['', ", "], ['s', '"REST API"'], ['', "];\n\n"],
+      ['', "  @override\n"],
+      ['', "  "], ['t', "Widget"], ['', " build("], ['t', "BuildContext"], ['', " context) => "], ['t', "ProductionApp"], ['', "(\n"],
+      ['', "    platforms: "], ['k', "const "], ['', "["], ['s', '"Android"'], ['', ", "], ['s', '"iOS"'], ['', "],\n"],
+      ['', "    architecture: "], ['t', "CleanArchitecture"], ['', "(state: "], ['t', "GetX"], ['', "()),\n"],
+      ['', "    ownership: "], ['s', '"design → build → test → deploy"'], ['', ",\n"],
+      ['', "    onRelease: () => publishTo(playStore, appStore),\n"],
+      ['', "  );\n"],
       ['', "}"]
     ];
     var full = LINES.map(function (p) { return p[1]; }).join("");
@@ -127,7 +130,7 @@
         typed += 1;
         render();
         var ch = full.charAt(typed - 1);
-        var delay = ch === "\n" ? 90 : (Math.random() * 22 + 12);
+        var delay = ch === "\n" ? 55 : (Math.random() * 14 + 7);
         setTimeout(type, delay);
       }
       var codeIo = new IntersectionObserver(function (entries, obs) {

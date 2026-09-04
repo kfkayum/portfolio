@@ -169,9 +169,8 @@
       chip.classList.add("is-open");
       note.innerHTML = "<b>" + chip.dataset.name + "</b> — " + chip.dataset.note;
       note.hidden = false;
-      /* place the note right after the chip's card */
-      var card = chip.closest(".stack-card");
-      card.after(note);
+      /* keep it as the last grid item so the card grid stays intact */
+      stackGrid.appendChild(note);
     });
   }
 

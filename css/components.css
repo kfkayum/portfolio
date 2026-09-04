@@ -2,6 +2,17 @@
    components.css — reusable app-style components
    ========================================================================== */
 
+/* ---------- ICONS (modern 24px line set) ---------- */
+.ic {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.rail-link .ic, .tab .ic { stroke-width: 1.9; }
+
 /* ---------- BUTTONS ---------- */
 .btn {
   display: inline-flex;

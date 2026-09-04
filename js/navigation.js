@@ -6,9 +6,7 @@
   "use strict";
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var railNav = document.getElementById("railNav");
   var railLinks = Array.prototype.slice.call(document.querySelectorAll(".rail-link"));
-  var railIndicator = document.querySelector(".rail-indicator");
   var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
   var tabIndicator = document.querySelector(".tabbar-indicator");
   var screenName = document.getElementById("screenName");
@@ -21,13 +19,7 @@
   });
 
   /* sections without their own tab-bar entry borrow the nearest one */
-  var TAB_FALLBACK = { experience: "projects", services: "projects" };
-
-  /* ---- move the rail indicator behind the active link ---- */
-  function moveRailIndicator(link) {
-    if (!railIndicator || !link) return;
-    railIndicator.style.transform = "translateY(" + link.offsetTop + "px)";
-  }
+  var TAB_FALLBACK = { experience: "skills", services: "skills" };
 
   /* ---- move the mobile tab-bar indicator ---- */
   function moveTabIndicator(tab) {
@@ -38,9 +30,7 @@
 
   function setActive(id) {
     railLinks.forEach(function (a) {
-      var on = a.getAttribute("href") === "#" + id;
-      a.classList.toggle("is-active", on);
-      if (on) moveRailIndicator(a);
+      a.classList.toggle("is-active", a.getAttribute("href") === "#" + id);
     });
 
     var tabId = "#" + (TAB_FALLBACK[id] || id);
@@ -87,12 +77,9 @@
   }
   railLinks.concat(tabs).forEach(function (a) { a.addEventListener("click", go); });
 
-  /* ---- keep indicators aligned after layout changes ---- */
+  /* ---- keep the tab indicator aligned after layout changes ---- */
   function realign() {
-    var active = document.querySelector(".rail-link.is-active");
-    moveRailIndicator(active);
-    var activeTab = document.querySelector(".tab.is-active");
-    moveTabIndicator(activeTab);
+    moveTabIndicator(document.querySelector(".tab.is-active"));
   }
   window.addEventListener("resize", realign, { passive: true });
   window.addEventListener("load", realign);
