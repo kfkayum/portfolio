@@ -53,3 +53,30 @@
   45% { transform: scale(1.22); }
   100% { transform: scale(1); }
 }
+
+/* ---------- minimal cards — soft shadow, gentle lift ---------- */
+.stack-card,
+.work-card,
+.service,
+.edu-card,
+.stat-tile {
+  box-shadow: var(--card-rest), inset 0 0 0 1px var(--border);
+  transition: transform 0.28s var(--ease-out), box-shadow 0.28s var(--ease-out);
+}
+.stack-card:hover,
+.work-card:hover,
+.service:hover,
+.edu-card:hover,
+.stat-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-hover), inset 0 0 0 1px var(--border-2);
+}
+.tl-item {
+  box-shadow: var(--card-rest), inset 0 0 0 1px var(--border);
+  transition: box-shadow 0.28s var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack-card:hover, .work-card:hover, .service:hover,
+  .edu-card:hover, .stat-tile:hover { transform: none; }
+}
