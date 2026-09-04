@@ -5,7 +5,7 @@
 
 /* ---------- large desktop — a centred content column, roomier rail ---------- */
 @media (min-width: 1440px) {
-  :root { --maxw: 1180px; --rail-w: 276px; --status-h: 38px; }
+  :root { --maxw: 1180px; --rail-w: 276px; --status-h: 46px; }
   body { font-size: 16.5px; }
   .phone { width: 336px; }
   .home-stage { width: min(480px, 100%); }
@@ -46,27 +46,27 @@
   :root { --tabbar-h: 68px; }
 
   .app {
-    padding-left: 0;
-    padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px));
+    display: block;
+    padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px) + 1rem);
   }
 
   .rail { display: none; }
 
-  .statusbar {
-    padding-left: clamp(0.9rem, 4vw, 1.4rem);
-  }
+  .statusbar { padding-inline: clamp(0.9rem, 4vw, 1.4rem); }
 
   .screen { min-height: auto; padding-block: clamp(3rem, 9vh, 4.5rem); }
-  #home.screen { min-height: calc(100vh - var(--status-h)); }
+  #home.screen { min-height: var(--card-h); }
 
-  /* bottom tab bar */
+  /* bottom tab bar — sticks to the bottom of the scrollable card */
   .tabbar {
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
+    position: sticky;
+    bottom: 0;
+    margin-top: calc(-1 * (var(--tabbar-h) + env(safe-area-inset-bottom, 0px)));
     z-index: 100;
+    border-radius: 0 0 var(--r-frame) var(--r-frame);
     display: flex;
     align-items: stretch;
-    height: var(--tabbar-h);
+    height: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px));
     padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px));
     background: color-mix(in srgb, var(--bg) 86%, transparent);
     backdrop-filter: blur(20px) saturate(1.6);
@@ -103,12 +103,12 @@
   .tab svg { width: 22px; height: 22px; }
   .tab.is-active { color: var(--accent); }
 
-  .theme-toggle-float {
+  .theme-toggle.theme-toggle-float {
     display: grid;
     position: fixed;
-    right: 1rem;
-    bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px) + 1rem);
-    z-index: 99;
+    right: calc(var(--frame) + 1rem);
+    bottom: calc(var(--frame) + var(--tabbar-h) + env(safe-area-inset-bottom, 0px) + 1rem);
+    z-index: 120;
     width: 44px;
     height: 44px;
     background: var(--surface);
@@ -161,13 +161,22 @@
   .filter-btn { flex: 0 0 auto; }
 }
 
+/* keep the status-bar text clear of the Dynamic Island on narrow screens */
+@media (max-width: 560px) {
+  .statusbar-crumb, .statusbar-sep { display: none; }
+}
+
 /* ---------- phones ---------- */
 @media (max-width: 480px) {
-  :root { --pad-screen: 1.15rem; }
+  :root {
+    --pad-screen: 1.15rem; --frame: 8px; --r-frame: 20px;
+    --device-gap-x: clamp(4px, 2.5vw, 16px);
+    --bezel: 8px; --device-r: 36px; --screen-r: 28px;
+    --island-top: 8px; --island-h: 26px; --island-w: clamp(120px, 40vw, 170px);
+  }
+  .device-btn { display: none; }
 
   .statusbar { font-size: 0.66rem; }
-  .statusbar-title .statusbar-crumb { display: none; }
-  .statusbar-title .statusbar-sep { display: none; }
 
   .home-title { font-size: clamp(1.85rem, 7.4vw, 2.4rem); }
   .mini-section-label, .mini-list { display: none; }

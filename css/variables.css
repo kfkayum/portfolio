@@ -5,19 +5,19 @@
    not an inversion. Theme is toggled via [data-theme] on <html>.
    ========================================================================== */
 :root {
-  /* --- surfaces (dark) --- */
-  --bg:          #08090c;
-  --bg-screen:   #0d0f14;
-  --surface:     #14161d;
-  --surface-2:   #1a1d26;
-  --surface-3:   #232733;
-  --border:      rgba(255, 255, 255, 0.08);
-  --border-2:    rgba(255, 255, 255, 0.14);
+  /* --- surfaces (dark) — lifted off pure black, cool slate --- */
+  --bg:          #14161c;
+  --bg-screen:   #1a1d25;
+  --surface:     #21242e;
+  --surface-2:   #282c38;
+  --surface-3:   #333845;
+  --border:      rgba(255, 255, 255, 0.10);
+  --border-2:    rgba(255, 255, 255, 0.17);
 
   /* --- text --- */
-  --text:   #f2f4f9;
-  --text-2: #a9afbe;
-  --text-3: #6c7382;
+  --text:   #f3f5fa;
+  --text-2: #b3b9c7;
+  --text-3: #7c8494;
 
   /* --- accent --- */
   --accent:       #3ee0c4;   /* aqua mint — the brand signal */
@@ -36,6 +36,11 @@
   --shadow-phone: 0 50px 100px -30px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.04);
   --glow: 0 0 0 1px var(--accent-line), 0 24px 60px -20px rgba(62, 224, 196, 0.25);
 
+  /* --- minimal card elevation (soft, barely-there) --- */
+  --card-rest:  0 1px 2px rgba(0, 0, 0, 0.28), 0 8px 22px -16px rgba(0, 0, 0, 0.5);
+  --card-hover: 0 2px 6px rgba(0, 0, 0, 0.3),
+                0 16px 36px -18px color-mix(in srgb, var(--accent) 22%, rgba(0, 0, 0, 0.4));
+
   /* --- radius --- */
   --r-xs: 8px;
   --r-sm: 12px;
@@ -51,11 +56,31 @@
 
   /* --- layout --- */
   --rail-w: 250px;
-  --status-h: 36px;
+  --status-h: 44px;
   --tabbar-h: 66px;
   --maxw: 1140px;
   --measure: 68ch;
   --pad-screen: clamp(1.25rem, 4vw, 4rem);
+
+  /* --- outer shell (scrollable card) --- */
+  --frame: 14px;                 /* gutter around the shell */
+  --r-frame: 30px;               /* outer corner radius of the card */
+
+  /* --- iPhone 16 device frame --- */
+  /* full viewport height (flush top & bottom); a screen-size gap on the left
+     and right, and a max width so it never stretches / flattens on big monitors. */
+  --device-gap-x: clamp(10px, 3vw, 110px);   /* gap left / right, grows with screen */
+  --device-w: min(calc(100vw - 2 * var(--device-gap-x)), 1560px);
+  --bezel: 14px;                 /* frame thickness (thin, modern) */
+  --device-r: 60px;              /* outer corner radius of the device */
+  --screen-r: 48px;              /* inner corner radius of the screen */
+  --island-top: 11px;            /* gap from the screen top to the Dynamic Island */
+  --island-w: clamp(128px, 14vw, 196px);
+  --island-h: 32px;
+
+  --card-h: calc(
+    100dvh - 2 * var(--bezel) - var(--status-h) - 2 * var(--frame)
+  );
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -87,4 +112,8 @@
   --shadow-2: 0 22px 50px -24px rgba(20, 28, 54, 0.22);
   --shadow-phone: 0 50px 100px -34px rgba(20, 28, 54, 0.28), 0 0 0 1px rgba(14, 18, 27, 0.05);
   --glow: 0 0 0 1px var(--accent-line), 0 24px 60px -22px rgba(15, 158, 136, 0.28);
+
+  --card-rest:  0 1px 2px rgba(20, 28, 54, 0.05), 0 10px 26px -18px rgba(20, 28, 54, 0.16);
+  --card-hover: 0 2px 6px rgba(20, 28, 54, 0.07),
+                0 18px 38px -20px color-mix(in srgb, var(--accent) 20%, rgba(20, 28, 54, 0.22));
 }

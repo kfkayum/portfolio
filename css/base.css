@@ -3,15 +3,177 @@
    ========================================================================== */
 html { overflow-x: clip; }
 
+html, body { height: 100%; }
+
 body {
   font-family: var(--font-body);
   font-size: 16px;
   color: var(--text);
-  background: var(--bg);
-  overflow-x: clip;
+  /* the "desk" behind the phone — soft ambient light, both themes */
+  background:
+    radial-gradient(40vw 48vw at 3% 20%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%),
+    radial-gradient(42vw 50vw at 99% 84%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 70%),
+    color-mix(in srgb, var(--bg) 72%, var(--text-3));
+  overflow: hidden;                 /* the page never scrolls — the card does */
+}
+
+/* fine dot grid + soft vignette on the free space around the phone */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(color-mix(in srgb, var(--text-3) 50%, transparent) 0.5px, transparent 0.6px);
+  background-size: 26px 26px;
+  opacity: 0.22;
+  -webkit-mask-image: radial-gradient(115% 85% at 50% 45%, #000, transparent 80%);
+          mask-image: radial-gradient(115% 85% at 50% 45%, #000, transparent 80%);
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(135% 120% at 50% 40%, transparent 62%, color-mix(in srgb, var(--text-3) 45%, transparent));
+  opacity: 0.4;
 }
 
 body.no-scroll { overflow: hidden; }
+
+/* ---------- iPhone 16 DEVICE FRAME (Dynamic Island) ---------- */
+.device {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--device-w);
+  z-index: 1;
+  padding: var(--bezel);
+  border-radius: var(--device-r);
+  background:
+    linear-gradient(145deg, #6f7075 0%, #2b2c30 18%, #0c0c0e 46%, #232428 74%, #55565b 100%);
+  box-shadow:
+    0 44px 100px -26px rgba(0, 0, 0, 0.55),
+    0 6px 24px -6px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.92),
+    inset 0 0 0 3px rgba(255, 255, 255, 0.06);
+}
+
+.device-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--screen-r);
+  overflow: hidden;
+  background: var(--bg);
+  box-shadow: inset 0 0 0 3px #000;
+  /* containing block for the floating toggle / any in-screen fixed UI */
+  transform: translateZ(0);
+}
+
+/* Dynamic Island — a floating pill near the top centre */
+.device-island {
+  position: absolute;
+  top: var(--island-top);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 13px;
+  width: var(--island-w);
+  height: var(--island-h);
+  background: #000;
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+}
+.device-island-cam {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #26333f, #05070a 68%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.device-btn {
+  position: absolute;
+  width: 4px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #55565c, #17171b 55%, #45464c);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.55);
+}
+/* left edge: Action button, then volume up / down */
+.device-btn--action {
+  left: -3px;
+  top: 17%;
+  height: clamp(30px, 4.5vh, 52px);
+}
+.device-btn--volup {
+  left: -3px;
+  top: calc(17% + clamp(30px, 4.5vh, 52px) + 26px);
+  height: clamp(58px, 9vh, 104px);
+}
+.device-btn--voldn {
+  left: -3px;
+  top: calc(17% + clamp(30px, 4.5vh, 52px) + 26px + clamp(58px, 9vh, 104px) + 16px);
+  height: clamp(58px, 9vh, 104px);
+}
+/* right edge: side button, then Camera Control */
+.device-btn--power {
+  right: -3px;
+  top: 23%;
+  height: clamp(96px, 15vh, 172px);
+}
+.device-btn--camera {
+  right: -4px;
+  top: calc(23% + clamp(96px, 15vh, 172px) + 30px);
+  width: 5px;
+  height: clamp(34px, 5vh, 60px);
+}
+
+/* ---------- OUTER SHELL: scrollable card inside the device screen ---------- */
+.shell {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--frame) + var(--status-h)) var(--frame) var(--frame);
+}
+
+.shell-card {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* soft colour grading — a whisper of the two accents, top and bottom */
+  background:
+    linear-gradient(
+      176deg,
+      color-mix(in srgb, var(--accent) 5%, var(--bg)) 0%,
+      var(--bg) 42%,
+      color-mix(in srgb, var(--accent-2) 5%, var(--bg)) 100%
+    );
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-frame);
+  box-shadow: var(--shadow-2);
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* hide every scrollbar — scrolling still works */
+* {
+  scrollbar-width: none;              /* Firefox */
+  -ms-overflow-style: none;           /* old Edge / IE */
+}
+*::-webkit-scrollbar {                 /* Chrome / Safari / Edge */
+  width: 0;
+  height: 0;
+  display: none;
+}
 
 strong { font-weight: 700; color: var(--text); }
 em { font-style: normal; }
@@ -33,34 +195,31 @@ em { font-style: normal; }
 
 /* ---------- APP FRAME ---------- */
 .app {
-  min-height: 100vh;
-  padding-left: var(--rail-w);
-  padding-top: var(--status-h);
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: var(--rail-w) minmax(0, 1fr);
+  grid-template-areas: "rail main";
 }
 
-/* ---------- STATUS BAR ---------- */
+/* ---------- iOS STATUS BAR (in the device strip, beside the Dynamic Island) ---------- */
 .statusbar {
-  position: fixed;
-  inset: 0 0 auto 0;
-  z-index: 90;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
   height: var(--status-h);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0 clamp(0.9rem, 3vw, 1.4rem);
-  padding-left: calc(var(--rail-w) + clamp(0.9rem, 3vw, 1.4rem));
+  gap: 0.6rem;
+  padding: 0 clamp(1.1rem, 4vw, 2.6rem);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.02em;
   color: var(--text-2);
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(18px) saturate(1.4);
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  border-bottom: 1px solid var(--border);
 }
 .statusbar-time { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
-.statusbar-title { display: flex; align-items: center; gap: 0.5rem; text-transform: uppercase; }
+.statusbar-title { display: flex; align-items: center; gap: 0.5rem; margin-right: auto; text-transform: uppercase; }
 .statusbar-crumb { color: var(--text-3); }
 .statusbar-sep { color: var(--text-3); }
 .statusbar-screen { color: var(--accent); }
@@ -68,104 +227,129 @@ em { font-style: normal; }
 
 /* ---------- DESKTOP RAIL ---------- */
 .rail {
-  position: fixed;
-  inset: 0 auto 0 0;
+  grid-area: rail;
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: var(--card-h);
   z-index: 95;
-  width: var(--rail-w);
   display: flex;
   flex-direction: column;
-  padding: 1.25rem 0.85rem 1.1rem;
-  background: var(--bg-screen);
+  padding: 1.35rem 0.8rem 1.1rem;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--accent) 4%, var(--bg-screen)),
+      var(--bg-screen) 30%);
   border-right: 1px solid var(--border);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .rail-brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.35rem 0.55rem 1.15rem;
-  margin-bottom: 1rem;
+  gap: 0.7rem;
+  padding: 0.2rem 0.5rem 1rem;
+  margin-bottom: 0.85rem;
   border-bottom: 1px solid var(--border);
 }
 .app-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
   flex-shrink: 0;
-  box-shadow: 0 6px 16px -8px rgba(63, 123, 255, 0.5);
+  box-shadow: 0 6px 18px -8px color-mix(in srgb, var(--accent) 55%, transparent);
 }
-.rail-brand-text { display: flex; flex-direction: column; line-height: 1.3; }
-.rail-brand-text strong { font-family: var(--font-display); font-size: 0.9rem; letter-spacing: -0.01em; }
+.rail-brand-text { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
+.rail-brand-text strong {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 .rail-brand-text em { font-size: 0.72rem; color: var(--text-3); }
 
 .rail-kicker {
-  padding: 0 0.7rem 0.55rem;
+  padding: 0 0.75rem 0.5rem;
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.18em;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-3);
 }
 
-.rail-nav { position: relative; display: flex; flex-direction: column; gap: 0.1rem; }
+.rail-nav { position: relative; display: flex; flex-direction: column; gap: 0.15rem; }
 .rail-indicator { display: none; }
 
 .rail-link {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  height: 42px;
-  padding: 0 0.7rem;
-  border-radius: 11px;
+  gap: 0.75rem;
+  height: 44px;
+  padding: 0 0.65rem 0 0.75rem;
+  border-radius: 12px;
   color: var(--text-2);
   font-weight: 550;
-  font-size: 0.895rem;
+  font-size: 0.9rem;
   letter-spacing: -0.005em;
-  transition: color 0.18s, background 0.18s;
+  transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
 }
+/* rounded accent bar that grows in on the active row */
 .rail-link::before {
   content: "";
   position: absolute;
-  left: -0.85rem;
+  left: -0.8rem;
   top: 50%;
   height: 0;
   width: 3px;
-  border-radius: 0 3px 3px 0;
+  border-radius: 3px;
   background: var(--accent);
   transform: translateY(-50%);
-  transition: height 0.25s var(--ease);
+  transition: height 0.3s var(--ease);
 }
-.rail-link .ic { width: 18px; height: 18px; opacity: 0.65; transition: opacity 0.18s; }
+.rail-link .ic {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  opacity: 0.62;
+  transition: opacity 0.2s, color 0.2s, transform 0.2s var(--ease);
+}
 .rail-num {
   margin-left: auto;
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: 0.64rem;
+  font-variant-numeric: tabular-nums;
   color: var(--text-3);
-  opacity: 0.7;
+  opacity: 0.55;
+  transition: color 0.2s, opacity 0.2s;
 }
-.rail-link:hover { color: var(--text); background: var(--surface); }
-.rail-link:hover .ic { opacity: 1; }
-.rail-link.is-active {
+
+.rail-link:hover {
   color: var(--text);
-  background: var(--surface);
+  background-color: color-mix(in srgb, var(--surface) 70%, transparent);
+}
+.rail-link:hover .ic { opacity: 1; transform: translateX(1px); }
+
+.rail-link.is-active {
+  color: var(--accent);
+  background-color: var(--accent-soft);
   font-weight: 650;
-  box-shadow: inset 0 0 0 1px var(--border);
 }
 .rail-link.is-active .ic { opacity: 1; color: var(--accent); }
-.rail-link.is-active .rail-num { color: var(--accent); opacity: 1; }
-.rail-link.is-active::before { height: 20px; }
+.rail-link.is-active .rail-num { color: var(--accent); opacity: 0.9; }
+.rail-link.is-active::before { height: 22px; }
 
 .rail-foot { margin-top: auto; padding-top: 1rem; }
 .rail-card {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  padding: 0.7rem;
+  padding: 0.65rem 0.7rem;
   border-radius: 14px;
   background: var(--surface);
   box-shadow: inset 0 0 0 1px var(--border);
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.6rem;
 }
 .rail-card img {
   width: 38px;
@@ -173,10 +357,11 @@ em { font-style: normal; }
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent);
 }
-.rail-card-text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.rail-card-text { display: flex; flex-direction: column; gap: 0.15rem; line-height: 1.2; min-width: 0; }
 .rail-card-text strong { font-size: 0.78rem; font-family: var(--font-display); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.rail-card-text span { display: flex; align-items: center; gap: 0.35rem; font-size: 0.68rem; color: var(--text-3); }
+.rail-card-text span { display: flex; align-items: center; gap: 0.4rem; font-size: 0.68rem; color: var(--text-3); }
 .rail-card-text .dot { width: 6px; height: 6px; }
 
 .rail-foot-actions { display: flex; align-items: center; gap: 0.5rem; }
@@ -193,7 +378,7 @@ em { font-style: normal; }
 }
 
 /* ---------- SCREENS ---------- */
-.screens { display: flex; flex-direction: column; }
+.screens { grid-area: main; display: flex; flex-direction: column; min-width: 0; }
 
 .screen {
   position: relative;
@@ -201,16 +386,23 @@ em { font-style: normal; }
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  scroll-margin-top: var(--status-h);
+  scroll-margin-top: 1rem;
   border-bottom: 1px solid var(--border);
 }
 .screen > * { width: 100%; max-width: var(--maxw); margin-inline: auto; min-width: 0; }
-.screen:nth-child(even) { background: var(--bg-screen); }
+.screen:nth-child(even) {
+  background:
+    linear-gradient(
+      176deg,
+      color-mix(in srgb, var(--accent) 4%, var(--bg-screen)) 0%,
+      var(--bg-screen) 60%
+    );
+}
 
 /* the opening and closing screens still fill the viewport */
 .screen-home,
 .screen-contact {
-  min-height: calc(100svh - var(--status-h));
+  min-height: var(--card-h);
   justify-content: center;
 }
 
@@ -245,7 +437,7 @@ em { font-style: normal; }
 
 /* ---------- MOBILE TAB BAR ---------- */
 .tabbar { display: none; }
-.theme-toggle-float { display: none; }
+.theme-toggle.theme-toggle-float { display: none; }
 
 /* ---------- FOOTER ---------- */
 .app-footer {
